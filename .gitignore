@@ -1,6 +1,12 @@
-# Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
+App_Data/logs
+packages
+build
 bin
 obj
-
-# mstest test results
+*.suo
+*.nupkg
+*.user
+_ReSharper*
 TestResults
+connectionStrings.config
+rh.exe
