@@ -9,7 +9,7 @@ Properties {
     $build_dir = Split-Path $psake.build_script_file    
     $build_artifacts_dir = "$build_dir\build\"
     $solution_file = "$build_dir\src\Squawkings.sln"
-    $nunit_dir = "$build_dir\src\packages\NUnit.Runners.2.6.0.12051\tools"
+    $nunit_dir = "$build_dir\src\packages\NUnit.Runners.2.6.1\tools"
     $version = "0.1.0"
     $newversion = $version
 }
