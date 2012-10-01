@@ -31,7 +31,6 @@ namespace Squawkings.Controllers
             vm.SquawkDisps =  GetSquawkDisps();
             return View(vm);
         }
-
     }
 
     public class SquawkDispsViewModel

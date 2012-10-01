@@ -37,18 +37,20 @@
                                     <a href="@Url.Action("Index")"><img src="../../Content/Images/@(item.AvatarUrl)" alt="View" /></a>
                                 </div>
                             </div>
-                            <div class="post-content span11" style="float: left;padding-left: 10px;">
-                                <div class="name">
-                                    @(item.Username)
+                            <div class="span11" style="float: left;padding-left: 10px;">
+                                <div>
+                                    <span class="name">@(item.Username)</span>
+                                    <span>(@(item.FullName))</span>
                                 </div>
                                 <div class="post-text">
                                     @(item.Content)
                                 </div>
-                                <div class="clear post-time post-time" style="padding-bottom: 10px;">
+                                <div class="post-time post-time" style="padding-bottom: 10px;">
                                     @(item.Time)
                                 </div>
                             </div>
                         </div>
+                        <div class="clear" ></div>
                     </div>
                 </div>  
             }
