@@ -90,7 +90,6 @@ body {
     padding-top: 15px;
     color: #A2A2A2;
 }
-
 #header {
     height: 100px;
 }
@@ -106,20 +105,13 @@ body {
     font-size: 13px;
     color: #222;
 }
-
-#post-button  {
-    background-color: #0F95D8;
-    color: white;
-    text-align: right;
-    width: 80px;
-}
 .clear {
     clear: both;
 }
 .float-left{
     float: left;
 }
-.span12, .container {
+.span12 {
     width: 960px;
 }
 .span11 {
