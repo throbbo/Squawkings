@@ -37,13 +37,9 @@ body {
     font-size: 12px;
     line-height: 18px;
 }
-.container, .container-bottom 
+.container
 {
 	margin: 0 auto;
-}
-.container-bottom 
-{
-    background-color: white;
 }
 .post-outer {
     background-color: white;
@@ -53,6 +49,31 @@ body {
     min-height:100px;
     height:auto !important;
     height:100px; 
+}
+.rounded {
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.outer {
+    width: 57px;
+    height: 57px;
+    -webkit-box-shadow: 0px 0px 10px #4d4d4d;
+    -moz-box-shadow: 0px 0px 10px #4d4d4d;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -khtml-border-radius: 8px;  
+    border-radius: 8px;
+    overflow: hidden;
+}
+.image {
+    padding: 0;
+     -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -khtml-border-radius: 8px;  
+    border-radius: 8px;
+    width: 57px;
+    height: 57px;
+    overflow: hidden;
 }
 .post-inner {
     padding: 15px 0 15px 10px;
@@ -92,8 +113,12 @@ body {
     text-align: right;
     width: 80px;
 }
-
-
+.clear {
+    clear: both;
+}
+.float-left{
+    float: left;
+}
 .span12, .container {
     width: 960px;
 }

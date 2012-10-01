@@ -13,15 +13,18 @@
                 See everything happening right now
             </div>
         </div>
-        <div class="container-bottom span10">
+        <div class="container span10">
             @foreach (var item in Model.SquawkDisps)
             {
-                <div class="post-outer span10">
+                <div class="post-outer rounded span10">
                     <div class="post-inner span10">
                         <div>
-                            <div class="post-image">
+                            <div class="outer" style="float: left;">
+                                <div class="image span1">
+                                    <a href="@Url.Action("Index", new { id=0 })"><img src="../../Content/Images/@(item.AvatarUrl)" alt="View" /></a>
+                                </div>
                             </div>
-                            <div>
+                            <div class="span9" style="float: left;padding-left: 10px;">
                                 <div class="name">
                                     @(item.Username)
                                 </div>
@@ -30,7 +33,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="post-time">
+                        <div class="clear post-time">
                             @(item.Time)
                         </div>
                     </div>
