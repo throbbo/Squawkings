@@ -33,7 +33,7 @@
 body {
     background: url("images/background.png");
     padding: 0;
-    font-family: "Helvetica Neue", Arial; 
+    font-family: "Helvetica Neue", Sans-Serif; 
     font-size: 12px;
     line-height: 18px;
 }
