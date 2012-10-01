@@ -1,6 +1,27 @@
-﻿@{
+﻿@model Squawkings.Controllers.SquawkDispsViewModel
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Hello Squawkers</h2>
+<div class="rob-background-default">
+    <div class="rob-container span10">
+        @foreach (var item in Model.SquawkDisps)
+        {
+            <div class="rob-post-outer span10">
+                <div class="rob-post-inner span10">
+                    <div class="rob-name">
+                        @(item.Username)
+                    </div>
+                    <div class="rob-post-text">
+                        @(item.Content)
+                    </div>
+                    <div class="rob-post-time">
+                        @(item.Time)
+                    </div>
+                </div>  
+            </div>  
+        }
+
+   </div>
+</div>
