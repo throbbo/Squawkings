@@ -30,19 +30,22 @@
 
 /* Robs Styles 
 -----------------------------------------------------------*/
-.rob-background-default {
+body {
+    background: url("images/background.png");
     padding: 0;
-    background-color: #F2F2F2;
+    font-family: "Helvetica Neue", Arial; 
     font-size: 12px;
     line-height: 18px;
-    font-family: "Helvetica Neue", Arial; 
 }
-.rob-container 
+.container, .container-bottom 
 {
-    background-color: white;
 	margin: 0 auto;
 }
-.rob-post-outer {
+.container-bottom 
+{
+    background-color: white;
+}
+.post-outer {
     background-color: white;
     color: #333;
     text-align: left;
@@ -51,23 +54,47 @@
     height:auto !important;
     height:100px; 
 }
-.rob-post-inner {
-    padding-top: 15px;
-    padding-bottom: 15px;
+.post-inner {
+    padding: 15px 0 15px 10px;
 }
-.rob-name {
+.name {
     font-size: 14px;
     font-weight: bold;
     padding-bottom: 3px;
 }
-.rob-post-text {
+.post-text {
     color: #333;
 }
-.rob-post-time {
+.post-time {
     padding-top: 15px;
     color: #A2A2A2;
 }
-.span12, .rob-container {
+
+#header {
+    height: 100px;
+}
+#global-header-text {
+    color:#555; 
+    font-size: 50px;
+    font-weight: 100;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+    padding-top: 25px;
+}
+#global-header-text-small {
+    padding: 20px 0 0 5px;
+    font-size: 13px;
+    color: #222;
+}
+
+#post-button  {
+    background-color: #0F95D8;
+    color: white;
+    text-align: right;
+    width: 80px;
+}
+
+
+.span12, .container {
     width: 960px;
 }
 .span11 {
@@ -105,28 +132,4 @@
 }
 .span1 {
     width: 80px;
-}
-.rob-post-outer2, .rob-post-text-small {
-	margin-left: auto;
-	margin-right: auto;
-    background-color: #F1F1F1;
-    color: #535353;
-    font-size: 34px;
-    text-align: left;
-}
-.rob-post-button  {
-    background-color: #0F95D8;
-    color: white;
-    text-align: right;
-    width: 80px;
-}
-.rob-post-button-row {
-    background-color: #0F95D8;
-    color: white;
-    text-align: right;
-    width: 80px;
-}
-.rob-post-text-small {
-    font-size: 10px;
-    text-align: left;
 }

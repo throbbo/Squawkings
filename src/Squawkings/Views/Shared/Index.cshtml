@@ -3,25 +3,39 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<div class="rob-background-default">
-    <div class="rob-container span10">
-        @foreach (var item in Model.SquawkDisps)
-        {
-            <div class="rob-post-outer span10">
-                <div class="rob-post-inner span10">
-                    <div class="rob-name">
-                        @(item.Username)
-                    </div>
-                    <div class="rob-post-text">
-                        @(item.Content)
-                    </div>
-                    <div class="rob-post-time">
-                        @(item.Time)
+<div>
+    <div class="container span10">
+        <div id="header">
+            <div id="global-header-text">
+                Global Squawks
+            </div>
+            <div id="global-header-text-small">
+                See everything happening right now
+            </div>
+        </div>
+        <div class="container-bottom span10">
+            @foreach (var item in Model.SquawkDisps)
+            {
+                <div class="post-outer span10">
+                    <div class="post-inner span10">
+                        <div>
+                            <div class="post-image">
+                            </div>
+                            <div>
+                                <div class="name">
+                                    @(item.Username)
+                                </div>
+                                <div class="post-text">
+                                    @(item.Content)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-time">
+                            @(item.Time)
+                        </div>
                     </div>
                 </div>  
-            </div>  
-        }
-
-   </div>
+            }
+        </div>
+    </div>
 </div>
