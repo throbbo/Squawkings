@@ -1,4 +1,5 @@
-﻿@model Squawkings.Controllers.SquawkDispsViewModel
+﻿@using Squawkings.Models
+@model Squawkings.Controllers.SquawkDispsViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -15,21 +16,25 @@
         </div>
         
         <div class="post-outer rounded span12" style="margin-bottom: 15px;">
-            <div style="padding: 15px;text-align: right;">
-                <textarea cols="123" rows="4">This is my first squawk!</textarea>
-                <input id="post-button" type="button" value="Squawk" style="margin-top: 10px;" />
+            <div class="span12" style="text-align: center;padding-top: 15px;">
+                <textarea cols="110" rows="4">This is my first squawk!</textarea>
+            </div>
+            <div style="text-align: right;padding: 0 15px 15px 0;">
+                <input id="post-button" type="button" value="Squawk" style="margin: 10px 0 0 0;" />
             </div>
         </div>  
         
         <div class="container span12">
-            @foreach (var item in Model.SquawkDisps)
+            @for (var idx = 0; idx < Model.SquawkDisps.Count; idx++ )
             {
-                <div class="post-outer rounded span12">
+                var item = Model.SquawkDisps[idx];
+                
+                <div class="post-outer span12@(idx==0?" rounded-top":"")@(idx==Model.SquawkDisps.Count-1?" rounded-bottom":"")">
                     <div class="post-inner span12">
                         <div>
                             <div class="outer" style="float: left;">
                                 <div class="image span1">
-                                    <a href="@Url.Action("Index", new { id=0 })"><img src="../../Content/Images/@(item.AvatarUrl)" alt="View" /></a>
+                                    <a href="@Url.Action("Index")"><img src="../../Content/Images/@(item.AvatarUrl)" alt="View" /></a>
                                 </div>
                             </div>
                             <div class="span11" style="float: left;padding-left: 10px;">

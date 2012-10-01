@@ -37,6 +37,14 @@ body {
     font-size: 12px;
     line-height: 18px;
 }
+textarea{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 930px;
+    border-radius: 5px;
+    border: 1px solid #CDCDCD;
+}
 .container
 {
 	margin: 0 auto;
@@ -49,10 +57,17 @@ body {
     min-height:110px;
     height:auto !important;
     height:100px; 
+    margin: 0 auto;
 }
-.rounded {
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+.rounded-top, .rounded {
+    border-radius: 5px 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+}
+.rounded-bottom, .rounded {
+    border-radius: 5px 5px ;
+    -moz-border-radius-bottomleft: 5px;
+    -moz-border-radius-bottomright: 5px;
 }
 .outer {
     width: 57px;
@@ -113,6 +128,10 @@ body {
 }
 .span12 {
     width: 960px;
+}
+.span12-padded {
+    width: 930px;
+    padding: 15px;
 }
 .span11 {
     width: 880px;
