@@ -32,12 +32,12 @@
                 <div class="post-outer span12@(idx==0?" rounded-top":"")@(idx==Model.SquawkDisps.Count-1?" rounded-bottom":"")">
                     <div class="post-inner span12">
                         <div>
-                            <div class="outer" style="float: left;">
+                            <div class="outer-image" style="float: left;">
                                 <div class="image span1">
                                     <a href="@Url.Action("Index")"><img src="../../Content/Images/@(item.AvatarUrl)" alt="View" /></a>
                                 </div>
                             </div>
-                            <div class="span11" style="float: left;padding-left: 10px;">
+                            <div class="post-content span11" style="float: left;padding-left: 10px;">
                                 <div class="name">
                                     @(item.Username)
                                 </div>
