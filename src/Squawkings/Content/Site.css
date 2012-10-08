@@ -48,32 +48,48 @@ textarea{
 .container
 {
 	margin: 0 auto;
+	width: 960px;
 }
-.post-outer {
+.squawk-post, .squawks-container, .squawks-container-top, .squawks-container-bottom, .squawk-item {
     background-color: white;
     color: #333;
     text-align: left;
-    border: 1px solid #D4D4D4;
+    border-bottom: 1px solid #D4D4D4;
     min-height:110px;
     height:auto !important;
     height:100px; 
     margin: 0 auto;
 }
-.rounded-top {
+.squawk-item {
+    position: relative;
+}
+.squawk-post, .squawks-container  {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    margin-bottom: 15px;
+}
+.squawk-post-top {
+    text-align: center;
+    padding-top: 15px; 
+}
+.squawk-post-bottom {
+    text-align: right;
+    padding: 0 15px 15px 0; 
+}
+#post-button {
+    margin: 10px 0 0 0;
+}
+.squawks-container .squawk-item:first-child {
     border-radius: 5px 5px 0 0;
     -moz-border-radius-topleft: 5px;
     -moz-border-radius-topright: 5px;
 }
-.rounded-bottom {
+.squawks-container .squawk-item:last-child {
     border-radius: 0 0 5px 5px ;
     -moz-border-radius-bottomleft: 5px;
     -moz-border-radius-bottomright: 5px;
 }
-.rounded {
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-}
-.outer-image {
+.squawk-item-image {
     width: 57px;
     height: 57px;
     -webkit-box-shadow: 0px 0px 10px #4d4d4d;
@@ -83,30 +99,23 @@ textarea{
     -khtml-border-radius: 8px;  
     border-radius: 8px;
     overflow: hidden;
+    position: absolute;
+    left: 15px;
+    top: 15px;
 }
-.image {
-    padding: 0;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -khtml-border-radius: 8px;  
-    border-radius: 8px;
-    width: 57px;
-    height: 57px;
-    overflow: hidden;
+.squawk-item-inner {
+    padding: 15px 15px 15px 82px;
 }
-.post-inner {
-    padding: 15px 0 15px 10px;
-}
-.name {
+.squawk-item-name {
     font-size: 14px;
     font-weight: bold;
     padding-bottom: 3px;
 }
-.post-text {
+.squawk-item-text {
     color: #333;
 }
-.post-time {
-    padding: 15px 0 15px 0;
+.squawk-item-time {
+    padding: 15px 0 0 0;
     color: #A2A2A2;
 }
 #header {
@@ -123,53 +132,4 @@ textarea{
     padding: 20px 0 0 5px;
     font-size: 13px;
     color: #222;
-}
-.clear {
-    clear: both;
-}
-.float-left{
-    float: left;
-}
-.span12 {
-    width: 960px;
-}
-.span12-padded {
-    width: 930px;
-    padding: 15px;
-}
-.span11 {
-    width: 880px;
-}
-.span1, .span2 , .span3, .span4, .span5, .span6, .span7, .span8, .span9, .span10, .span11, .span12 {
-    margin: 0px auto;
-}
-.span10 {
-    width: 800px;
-}
-.span9 {
-    width: 720px;
-}
-.span8 {
-    width: 640px;
-}
-.span7 {
-    width: 560px;
-}
-.span6 {
-    width: 480px;
-}
-.span5 {
-    width: 400px;
-}
-.span4 {
-    width: 320px;
-}
-.span3 {
-    width: 240px;
-}
-.span2 {
-    width: 160px;
-}
-.span1 {
-    width: 80px;
 }

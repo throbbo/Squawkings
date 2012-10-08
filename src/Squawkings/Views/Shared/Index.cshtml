@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div>
-    <div class="container span12">
+    <div class="container">
         <div id="header">
             <div id="global-header-text">
                 Global Squawks
@@ -15,44 +15,37 @@
             </div>
         </div>
         
-        <div class="post-outer rounded span12" style="margin-bottom: 15px;">
-            <div class="span12" style="text-align: center;padding-top: 15px;">
+        <div class="squawk-post">
+            <div class="squawk-post-top">
                 <textarea cols="110" rows="4">This is my first squawk!</textarea>
             </div>
-            <div style="text-align: right;padding: 0 15px 15px 0;">
-                <input id="post-button" type="button" value="Squawk" style="margin: 10px 0 0 0;" />
+            <div class="squawk-post-bottom">
+                <input id="post-button" type="button" value="Squawk" />
             </div>
         </div>  
         
-        <div class="container span12">
-            @for (var idx = 0; idx < Model.SquawkDisps.Count; idx++ )
+        <div class="squawks-container">
+            @foreach (var item in Model.SquawkDisps)
             {
-                var item = Model.SquawkDisps[idx];
-                
-                <div class="post-outer span12@(idx==0?" rounded-top":"")@(idx==Model.SquawkDisps.Count-1?" rounded-bottom":"")">
-                    <div class="post-inner span12">
-                        <div>
-                            <div class="outer-image" style="float: left;">
-                                <div class="image span1">
-                                    <a href="@Url.Action("Index")"><img src="../../Content/Images/@(item.AvatarUrl)" alt="View" /></a>
-                                </div>
-                            </div>
-                            <div class="span11" style="float: left;padding-left: 10px;">
-                                <div>
-                                    <span class="name">@(item.Username)</span>
-                                    <span>(@(item.FullName))</span>
-                                </div>
-                                <div class="post-text">
-                                    @(item.Content)
-                                </div>
-                                <div class="post-time post-time" style="padding-bottom: 10px;">
-                                    @(item.Time)
-                                </div>
-                            </div>
-                        </div>
-                        <div class="clear" ></div>
+                <div class="squawk-item">
+                    <div class="squawk-item-image">
+                        <a href="@Url.Action("Index")">
+                            <img src="../../Content/Images/@(item.AvatarUrl)" alt="View" />
+                        </a>
                     </div>
-                </div>  
+                    <div class="squawk-item-inner">
+                        <div>
+                            <span class="squawk-item-name">@(item.Username)</span> 
+                            <span>(@(item.FullName))</span>
+                        </div>
+                        <div class="squawk-item-text">
+                            @(item.Content)
+                        </div>
+                        <div class="squawk-item-time">
+                            @(item.Time)
+                        </div>
+                    </div>
+                </div>
             }
         </div>
     </div>
