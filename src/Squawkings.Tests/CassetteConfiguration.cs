@@ -1,3 +1,4 @@
+using System.IO;
 using Cassette;
 using Cassette.Scripts;
 using Cassette.Stylesheets;
@@ -17,8 +18,14 @@ namespace Squawkings.Tests
             // This default configuration treats each file as a separate 'bundle'.
             // In production the content will be minified, but the files are not combined.
             // So you probably want to tweak these defaults!
-            bundles.AddPerIndividualFile<StylesheetBundle>("Content");
-            bundles.AddPerIndividualFile<ScriptBundle>("Scripts");
+            //bundles.AddPerIndividualFile<StylesheetBundle>("Content");
+            //bundles.AddPerIndividualFile<ScriptBundle>("Scripts");
+            
+            bundles.AddPerSubDirectory<StylesheetBundle>("Content", new FileSearch
+            {
+                Pattern = "*.css,*.less",
+                SearchOption = SearchOption.TopDirectoryOnly
+            });
 
             // To combine files, try something like this instead:
             //   bundles.Add<StylesheetBundle>("Content");
