@@ -9,7 +9,9 @@
         <div id="header">
             <div id="global-header-text">
                 Global Squawks
-            </div>
+                 @{ Html.BeginForm("logoff", "logon", FormMethod.Get); }
+                    <input id="logoff-button" class="btn btn-primary " value="Log Off" type="submit"></input>
+           </div>
             <div id="global-header-text-small">
                 See everything happening right now
             </div>
@@ -20,7 +22,8 @@
                 <textarea cols="110" rows="4">This is my first squawk!</textarea>
             </div>
             <div class="squawk-post-bottom">
-                <input id="post-button" type="button" value="Squawk" />
+                    <input id="post-button" type="button" value="Squawk" />
+                @{ Html.EndForm(); }
             </div>
         </div>  
         
@@ -49,4 +52,5 @@
             }
         </div>
     </div>
+
 </div>

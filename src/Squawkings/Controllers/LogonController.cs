@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -19,6 +20,7 @@ namespace Squawkings.Controllers
         }
         
         [HttpPost]
+        [ValidateAntiForgeryToken(Salt = "AntiForgeryTokenSalt")]
         public ActionResult Index(LogonInputModel im)
         {
             if(string.IsNullOrEmpty(im.PassWord) || string.IsNullOrEmpty(im.UserName))
@@ -26,10 +28,12 @@ namespace Squawkings.Controllers
                 ModelState.AddModelError("logonerror", LogonErrorMsg);
                 return Index();
             }
-
+            
             if(im.UserName == "test")
             {
-                if(im.PassWord=="test")
+                var hashPwFromDb = Crypto.HashPassword("test");
+                
+                if(Crypto.VerifyHashedPassword(hashPwFromDb, im.UserName))
                 {
                     var isPersistant = im.RememberMe == "Y";
                     FormsAuthentication.SetAuthCookie(im.UserName, isPersistant);
@@ -42,6 +46,18 @@ namespace Squawkings.Controllers
             return Index();
         }
 
+        [HttpGet]
+        [Authorize]
+        public ActionResult Logoff()
+        {
+            var x = Request.IsAuthenticated;
+            var y = User.Identity.IsAuthenticated;
+
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+
+            return RedirectToAction("Index");
+        }
     }
 
     public class LogonInputModel    
