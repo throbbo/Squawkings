@@ -18,6 +18,9 @@
 @stdbordercolor: @textareaBorder;
 @stdBorder: @stdborderwidth @stdbordertype @stdbordercolor;
 @margincentre: 0 auto;
+.centered {
+	margin: 0 auto;
+}
 @bold: bold;
 @dfltfontsize: 12px;
 @hdrfontsize: (@dfltfontsize + 1);
@@ -80,7 +83,7 @@ textarea{
 }
 .container
 {
-	margin: @margincentre;
+	.centered;
 	width: 960px;
 }
 .squawk-post, .squawks-container, .squawks-container-top, .squawks-container-bottom, .squawk-item {
@@ -91,7 +94,7 @@ textarea{
     min-height:110px;
     height:auto !important;
     height:100px; 
-    margin: @margincentre;
+  	.centered;
 }
 .squawk-item {
     position: relative;
@@ -201,4 +204,27 @@ input.logon-input-password {
 #logon-input-button {
     .inputheightwidth(10px,0);
 }
+#error-dialog {
+	.centered;
+	width: @logoncontwidth;
+}
 
+.input-validation-error.checkbox,
+.input-validation-error.radio,
+input.input-validation-error,
+select.input-validation-error,
+textarea.input-validation-error  {
+  color: #b94a48;
+  border-color: #b94a48;
+}
+
+.input-validation-error.checkbox:focus,
+.input-validation-error.radio:focus,
+input.input-validation-error:focus,
+select.input-validation-error:focus,
+textarea.input-validation-error:focus {
+  border-color: #953b39;
+  -webkit-box-shadow: 0 0 6px #d59392;
+     -moz-box-shadow: 0 0 6px #d59392;
+          box-shadow: 0 0 6px #d59392;
+}

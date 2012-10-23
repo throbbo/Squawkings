@@ -25,6 +25,7 @@ namespace Squawkings.Controllers
             return squawks;
         }
 
+        [Authorize]
         public ActionResult Index()
         {
             var vm = new SquawkDispsViewModel();
