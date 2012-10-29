@@ -9,6 +9,7 @@
 <div id="logon-container">
     @Html.BeginForm("index", "logon", FormMethod.Post) {
     @Html.AntiForgeryToken("AntiForgeryTokenSalt")%>
+
     <div id="logon-dialog">
         <input class="logon-input-userid" name="UserName" title="Please enter a Password" maxlength="50"
                placeholder="username" type="text" />

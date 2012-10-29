@@ -20,11 +20,15 @@ namespace Squawkings
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            
+            routes.MapRoute("Home",   "Home/{action}/{id}", new { controller = "Home", action = "Index", id = UrlParameter.Optional } );
+            routes.MapRoute("Logon",  "Logon/{action}/{id}", new { controller = "Logon", action = "Index", id = UrlParameter.Optional } );
+            routes.MapRoute("Global", "Global/{action}/{id}", new { controller = "Global", action = "Index", id = UrlParameter.Optional} );
 
             routes.MapRoute(
-                "Default", // Route name
-                "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+                "Profile", // Route name
+                "{username}", // URL with parameters
+                new { controller = "Profile", action = "Index" } // Parameter defaults
             );
         }
 

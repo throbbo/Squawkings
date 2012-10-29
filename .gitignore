@@ -10,6 +10,4 @@ _ReSharper*
 TestResults
 connectionStrings.config
 rh.exe
-localDeploy.bat
-restore.bat
-*.sql
+dev_*

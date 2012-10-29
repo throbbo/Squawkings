@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Security;
+using NPoco;
+using Squawkings.Models;
 
 namespace Squawkings.Controllers
 {
@@ -18,7 +20,7 @@ namespace Squawkings.Controllers
         {
             return View();
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken(Salt = "AntiForgeryTokenSalt")]
         public ActionResult Index(LogonInputModel im)
@@ -29,21 +31,39 @@ namespace Squawkings.Controllers
                 return Index();
             }
             
-            if(im.UserName == "test")
+            if(!IsUserNameValid(im.UserName))
             {
-                var hashPwFromDb = Crypto.HashPassword("test");
-                
-                if(Crypto.VerifyHashedPassword(hashPwFromDb, im.UserName))
-                {
-                    var isPersistant = im.RememberMe == "Y";
-                    FormsAuthentication.SetAuthCookie(im.UserName, isPersistant);
-                    ModelState.Clear();
-                    FormsAuthentication.RedirectFromLoginPage(im.UserName, isPersistant);
-                }
+                ModelState.AddModelError("logonerror", LogonErrorMsg);
+                return Index();
+            }
+            var hashPwFromDb = GetPasswordFromDb(im.UserName);                    
+            //var hashPwFromInput = Crypto.HashPassword(im.PassWord);       
+            if(Crypto.VerifyHashedPassword(hashPwFromDb, im.PassWord))
+            {
+                var isPersistant = im.RememberMe == "Y";
+                FormsAuthentication.SetAuthCookie(im.UserName, isPersistant);
+                ModelState.Clear();
+                FormsAuthentication.RedirectFromLoginPage(im.UserName, isPersistant);
             }
             
             ModelState.AddModelError("logonerror", LogonErrorMsg);
             return Index();
+        }
+
+        private string GetPasswordFromDb(string userName)
+        {
+            // TODO: Setup Dependancy Injection
+            ILogonDb logonDb = new LogonDb();
+            var pw = logonDb.GetPasswordByUserName(userName);
+            return pw; // "ACYvQX8NLtOlYY4LBDvOEcA9r1FrnBi9pR46MYyl/p0OhjqM8IOsksXb+o3pcbJN2g==";
+        }
+
+        private bool IsUserNameValid(string userName)
+        {
+            ILogonDb logonDb = new LogonDb();
+
+            var isUserValid = logonDb.GetUsers().Any(x => x.Username == userName);
+            return isUserValid;
         }
 
         [HttpGet]
