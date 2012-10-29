@@ -1,4 +1,4 @@
-﻿@model HandleErrorInfo
+﻿@model Squawkings.Controllers.LogonViewModel
 @{
     ViewBag.Title = "Logon.cshtml";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,17 +8,17 @@
 </div>
 <div id="logon-container">
     @Html.BeginForm("index", "logon", FormMethod.Post) {
-    @Html.AntiForgeryToken("AntiForgeryTokenSalt")%>
-
+    @Html.AntiForgeryToken("AntiForgeryTokenSalt")
+    @Html.HiddenFor(x=>x.ReturnUrl)
     <div id="logon-dialog">
-        <input class="logon-input-userid" name="UserName" title="Please enter a Password" maxlength="50"
-               placeholder="username" type="text" />
-        <input class="logon-input-password" name="Password" title="Please enter a Password"
-               maxlength="50" placeholder="password" type="password" />
+        @Html.TextBoxFor(x=>x.UserName, new {@class = "logon-input-userid",  title="Please enter a User Name",  maxlength="50", placeholder="username"})
+        @Html.PasswordFor(x=>x.PassWord, new {@class = "logon-input-password",  title="Please enter a Password",  maxlength="50", placeholder="password"})
+              
         <label class="checkbox">
-            <input class="logon-input-rememberme" name="RememberMe" value="Y" type="checkbox" />
+            @Html.CheckBoxFor(x=>x.RememberMe) 
             Remember Me
         </label>
+
         <input id="logon-input-button" class="btn btn-primary " value="Log In" type="submit" />
     </div>
     @{ Html.EndForm(); }

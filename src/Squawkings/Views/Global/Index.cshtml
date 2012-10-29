@@ -10,12 +10,13 @@
         <div id="header">
             <div id="global-header-text">
                 Global Squawks
-                @{ Html.BeginForm("logoff", "logon", FormMethod.Get); }
            </div>
             <div id="global-header-text-small">
                 See everything happening right now
             </div>
         </div>
+
+        @{ Html.BeginForm("logoff", "logon", FormMethod.Get); }
         
         <div class="squawks-container">
               @Html.Partial("_sqauwks", Model.SquawkDisps)

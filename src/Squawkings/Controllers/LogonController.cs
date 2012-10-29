@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Helpers;
@@ -12,58 +13,45 @@ namespace Squawkings.Controllers
 {
     public class LogonController : Controller
     {
-        //
-        // GET: /Logon/
-        private const string LogonErrorMsg = "Your Logon attempt was not successful!";
-        [HttpGet]
-        public ActionResult Index()
+        private readonly ILogonDb _logonDb;
+
+        public LogonController() 
+            : this(new LogonDb())
         {
-            return View();
+        }
+        public LogonController(ILogonDb logonDb)
+        {
+            _logonDb = logonDb;
+        }
+
+        private const string LogonErrorMsg = "Your Logon attempt was not successful!";
+
+        [HttpGet]
+        public ActionResult Index(string returnUrl)
+        {
+            var vm = new LogonViewModel{ReturnUrl = returnUrl};
+            return View(vm);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken(Salt = "AntiForgeryTokenSalt")]
         public ActionResult Index(LogonInputModel im)
         {
-            if(string.IsNullOrEmpty(im.PassWord) || string.IsNullOrEmpty(im.UserName))
+            if (!ModelState.IsValid)
+                return Index(im.ReturnUrl);
+
+            var hashPwFromDb = _logonDb.GetPasswordByUserName(im.UserName);                    
+            if(hashPwFromDb != null && Crypto.VerifyHashedPassword(hashPwFromDb, im.PassWord))
             {
-                ModelState.AddModelError("logonerror", LogonErrorMsg);
-                return Index();
-            }
-            
-            if(!IsUserNameValid(im.UserName))
-            {
-                ModelState.AddModelError("logonerror", LogonErrorMsg);
-                return Index();
-            }
-            var hashPwFromDb = GetPasswordFromDb(im.UserName);                    
-            //var hashPwFromInput = Crypto.HashPassword(im.PassWord);       
-            if(Crypto.VerifyHashedPassword(hashPwFromDb, im.PassWord))
-            {
-                var isPersistant = im.RememberMe == "Y";
-                FormsAuthentication.SetAuthCookie(im.UserName, isPersistant);
-                ModelState.Clear();
-                FormsAuthentication.RedirectFromLoginPage(im.UserName, isPersistant);
+                FormsAuthentication.SetAuthCookie(im.UserName, im.RememberMe);
+                if(!string.IsNullOrEmpty(im.ReturnUrl))
+                    return Redirect(im.ReturnUrl);
+
+                return RedirectToAction("Index", "Home");  
             }
             
             ModelState.AddModelError("logonerror", LogonErrorMsg);
-            return Index();
-        }
-
-        private string GetPasswordFromDb(string userName)
-        {
-            // TODO: Setup Dependancy Injection
-            ILogonDb logonDb = new LogonDb();
-            var pw = logonDb.GetPasswordByUserName(userName);
-            return pw; // "ACYvQX8NLtOlYY4LBDvOEcA9r1FrnBi9pR46MYyl/p0OhjqM8IOsksXb+o3pcbJN2g==";
-        }
-
-        private bool IsUserNameValid(string userName)
-        {
-            ILogonDb logonDb = new LogonDb();
-
-            var isUserValid = logonDb.GetUsers().Any(x => x.Username == userName);
-            return isUserValid;
+            return Index(im.ReturnUrl);
         }
 
         [HttpGet]
@@ -79,11 +67,20 @@ namespace Squawkings.Controllers
             return RedirectToAction("Index");
         }
     }
-
     public class LogonInputModel    
+    {
+        [Required]
+        public string UserName { get; set; }
+        [Required]
+        public string PassWord { get; set; }
+        public bool RememberMe { get; set; }
+        public string ReturnUrl { get; set; }
+    }
+    public class LogonViewModel    
     {
         public string UserName { get; set; }
         public string PassWord { get; set; }
-        public string RememberMe { get; set; }
+        public bool RememberMe { get; set; }
+        public string ReturnUrl { get; set; }
     }
 }

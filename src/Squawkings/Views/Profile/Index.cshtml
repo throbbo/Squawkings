@@ -1,0 +1,31 @@
+﻿@model Squawkings.Controllers.ProfileViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <div>
+            User Name @Html.DisplayTextFor(x=>x.Username)
+        </div>
+        <div>
+            Avatar @Html.DisplayTextFor(x=>x.Avatarurl)
+        </div>
+        <div>
+            First Name @Html.DisplayTextFor(x=>x.Firstname)
+        </div>
+        <div>
+            Last Name @Html.DisplayTextFor(x=>x.Lastname)
+        </div>
+        <div>
+            Email Name @Html.DisplayTextFor(x=>x.Email)
+        </div>
+    </div>
+</body>
+</html>
