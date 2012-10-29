@@ -173,6 +173,7 @@
     <Content Include="Views\Logon\Index.cshtml" />
     <None Include="deploy.bat.templ" />
     <Content Include="Views\Global\Index.cshtml" />
+    <Content Include="Views\Shared\_sqauwks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

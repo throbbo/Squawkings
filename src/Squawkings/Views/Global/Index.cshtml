@@ -18,29 +18,9 @@
         </div>
         
         <div class="squawks-container">
-            @foreach (var item in Model.SquawkDisps)
-            {
-                <div class="squawk-item">
-                    <div class="squawk-item-image">
-                        <a href="@Url.Action("Index")">
-                            <img src="../../Content/Images/@(item.AvatarUrl)" alt="View" />
-                        </a>
-                    </div>
-                    <div class="squawk-item-inner">
-                        <div>
-                            <span class="squawk-item-name">@(item.Username)</span> 
-                            <span>(@(item.FullName))</span>
-                        </div>
-                        <div class="squawk-item-text">
-                            @(item.Content)
-                        </div>
-                        <div class="squawk-item-time">
-                            @(item.Time)
-                        </div>
-                    </div>
-                </div>
-            }
+              @Html.Partial("_sqauwks", Model.SquawkDisps)
         </div>
+      
     </div>
 
 </div>

@@ -12,9 +12,7 @@ namespace Squawkings.Models
     {
         public IDatabase GetDb()
         {
-            var connString = ConfigurationManager.ConnectionStrings["Squawkings"].ConnectionString;
-            var provider = ConfigurationManager.ConnectionStrings["Squawkings"].ProviderName;
-            IDatabase db = new Database(connString, provider);
+            IDatabase db = new Database("Squawkings");
             return db;
         }
 
