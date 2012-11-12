@@ -30,10 +30,26 @@ namespace Squawkings.Controllers
 
         public ActionResult Index()
         {
-            var vm = new SquawkDispsViewModel();
+            var vm = new GlobalViewModel();
             vm.SquawkDisps =  GetSquawkDisps();
             return View(vm);
         }
-
     }
+
+    public class GlobalInputModel
+    {
+        public GlobalInputModel()
+        {
+            OtherStuff = "Hello World";
+            SquawkDisps = new List<SquawkDisp>();
+        }
+        public List<SquawkDisp> SquawkDisps { get; set; }
+        public string OtherStuff { get; set; }
+    }
+    public class GlobalViewModel
+    {
+        public List<SquawkDisp> SquawkDisps { get; set; }
+        public string OtherStuff { get; set; }
+    }
+
 }

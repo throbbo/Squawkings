@@ -37,6 +37,12 @@
   -o-border-radius: @radiusin;
   border-radius: @radiusin;
 }
+.link-text {
+	font-size: @dfltfontsize;
+	text-align:right;
+	padding-right: 20px;
+	color:white;
+}
 .displaynone {
 	display: none;
 }
@@ -161,10 +167,16 @@ textarea{
     text-shadow: 0 @stdborderwidth 0 rgba(255, 255, 255, 0.9);
     padding-top: (@pad-std+10);
 }
-#global-header-text-small {
+.global-header-text-small {
     padding: 20px 0 0 5px;
     font-size: @hdrfontsize;
     color: @hdrtextcolor;
+}
+
+.global-header-text {
+    font-size: @hdrfontsize;
+    color: @hdrtextcolor;
+	font: @bold;
 }
 
 /* Logon Page */
@@ -188,6 +200,7 @@ textarea{
 	position: fixed;
 	top: 0px;
 	width: 100%;
+	margin-bottom: 50px;
 }
 .inputheightwidth(@marginptop: @pad-small1, @marginpbot: @pad-small1) {
     width: 100%;
@@ -207,6 +220,11 @@ input.logon-input-password {
 #error-dialog {
 	.centered;
 	width: @logoncontwidth;
+}
+
+#profile-display {
+	margin: @margincentre;
+	margin-top: 300px;
 }
 
 .input-validation-error.checkbox,

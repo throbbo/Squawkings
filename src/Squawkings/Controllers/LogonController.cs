@@ -50,11 +50,10 @@ namespace Squawkings.Controllers
                 return RedirectToAction("Index", "Home");  
             }
             
-            ModelState.AddModelError("logonerror", LogonErrorMsg);
+            ModelState.AddModelError("", LogonErrorMsg);
             return Index(im.ReturnUrl);
         }
 
-        [HttpGet]
         [Authorize]
         public ActionResult Logoff()
         {

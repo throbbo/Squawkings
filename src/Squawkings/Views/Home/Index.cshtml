@@ -1,4 +1,5 @@
-﻿@using Squawkings.Models
+﻿@using Squawkings.Controllers
+@using Squawkings.Models
 @model Squawkings.Controllers.SquawkDispsViewModel
 @{
     ViewBag.Title = "Index";
@@ -11,27 +12,24 @@
             <div id="global-header-text">
                 My Squawks
            </div>
-            <div id="global-header-text-small">
+            <div class="global-header-text-small">
                 See everything happening right now
             </div>
         </div>
         
-        @{ Html.BeginForm("logoff", "logon", FormMethod.Get); }
-        <div class="squawk-post">
-            <div class="squawk-post-top">
-                <textarea cols="110" rows="4">This is my first squawk!</textarea>
-            </div>
-            <div class="squawk-post-bottom">
-                <input id="post-button" type="button" value="Squawk" />
-               @* <input id="home-button" type="button" value="Home" />
-                <input id="profile-button" type="button" value="Profile" />*@
-                <input id="logoff-button" type="submit"  value="Log Off" />
-                @{ Html.EndForm(); }
-            </div>
-        </div>  
+        @using (Html.Form<LogonInputModel>("logoff","logon")) {
+            <div class="squawk-post">
+                <div class="squawk-post-top">
+                    <textarea cols="110" rows="4">This is my first squawk!</textarea>
+                </div>
+                <div class="squawk-post-bottom">
+                    <input id="post-button" type="button" value="Squawk" />
+                </div>
+            </div>  
+         }
         
         <div class="squawks-container">
-            @foreach (var item in Model.SquawkDisps)
+            @foreach (var item in Model.SquawkDisps.Track())
             {
                 <div class="squawk-item">
                     <div class="squawk-item-image">
@@ -41,14 +39,18 @@
                     </div>
                     <div class="squawk-item-inner">
                         <div>
-                            <span class="squawk-item-name">@(item.Username)</span> 
-                            <span>(@(item.FullName))</span>
+                            <span class="squawk-item-name">
+                                @Html.Display(x=>x.SquawkDisps[Loop.Index].Username)
+                            </span> 
+                            <span>
+                                @Html.Display(x=>x.SquawkDisps[Loop.Index].FullName)
+                            </span>
                         </div>
                         <div class="squawk-item-text">
-                            @(item.Content)
+                            @Html.Display(x=>x.SquawkDisps[Loop.Index].Content)
                         </div>
                         <div class="squawk-item-time">
-                            @(item.Time)
+                            @Html.Display(x=>x.SquawkDisps[Loop.Index].Time)
                         </div>
                     </div>
                 </div>

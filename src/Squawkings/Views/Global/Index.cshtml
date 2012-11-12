@@ -1,5 +1,5 @@
-﻿@using Squawkings.Models
-@model Squawkings.Controllers.SquawkDispsViewModel
+﻿@using Squawkings.Controllers
+@model GlobalViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,17 +11,16 @@
             <div id="global-header-text">
                 Global Squawks
            </div>
-            <div id="global-header-text-small">
+            <div class="global-header-text-small">
                 See everything happening right now
             </div>
         </div>
 
-        @{ Html.BeginForm("logoff", "logon", FormMethod.Get); }
-        
-        <div class="squawks-container">
-              @Html.Partial("_sqauwks", Model.SquawkDisps)
-        </div>
-      
+        @using (Html.Form<GlobalInputModel>("")) {
+            <div class="squawks-container">
+                  @Html.Partial("_sqauwks", Model.SquawkDisps)
+            </div>
+        }
     </div>
 
 </div>

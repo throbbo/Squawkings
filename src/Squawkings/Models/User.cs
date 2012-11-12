@@ -21,5 +21,7 @@ namespace Squawkings.Models
         public string Email { get; set; }
         [Column("AvatarUrl")]
         public string Avatarurl { get; set; }
+        [Column("Bio")]
+        public string Bio { get; set; }    
     }
 }

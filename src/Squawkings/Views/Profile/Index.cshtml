@@ -10,22 +10,29 @@
     <title>Index</title>
 </head>
 <body>
-    <div>
+    
+ 
+<div id="logon-banner">
+</div>
+<div id="logon-container">
+    <div id="logon-dialog">
         <div>
-            User Name @Html.DisplayTextFor(x=>x.Username)
+            <h3>Profile Details:</h3>
         </div>
         <div>
-            Avatar @Html.DisplayTextFor(x=>x.Avatarurl)
+            <span class="global-header-text">User: </span>
+            <span> @Html.Display(x=>x.Firstname) @Html.Display(x=>x.Lastname) [@Html.Display(x=>x.Username)]</span>
         </div>
         <div>
-            First Name @Html.DisplayTextFor(x=>x.Firstname)
+            <span class="global-header-text">Avatar</span> 
+            <span>@Html.Display(x=>x.Avatarurl)</span>
         </div>
         <div>
-            Last Name @Html.DisplayTextFor(x=>x.Lastname)
+            <span class="global-header-text">Bio</span> 
+            <span>@Html.Display(x=>x.Bio )</span>
         </div>
-        <div>
-            Email Name @Html.DisplayTextFor(x=>x.Email)
-        </div>
+       
     </div>
+</div>        
 </body>
 </html>
