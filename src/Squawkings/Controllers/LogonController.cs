@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Helpers;
@@ -37,21 +38,33 @@ namespace Squawkings.Controllers
         [ValidateAntiForgeryToken(Salt = "AntiForgeryTokenSalt")]
         public ActionResult Index(LogonInputModel im)
         {
-            if (!ModelState.IsValid)
-                return Index(im.ReturnUrl);
+            if (!ModelState.IsValid) 
+                return ReturnLogonError(im.ReturnUrl);
 
-            var hashPwFromDb = _logonDb.GetPasswordByUserName(im.UserName);                    
-            if(hashPwFromDb != null && Crypto.VerifyHashedPassword(hashPwFromDb, im.PassWord))
+            var user = _logonDb.GetUsers().FirstOrDefault(x=>x.Username==im.UserName); 
+            if(user==null) 
+                return ReturnLogonError(im.ReturnUrl);
+
+            var pw = _logonDb.GetPasswordByUserName(im.UserName);
+            if(string.IsNullOrEmpty(pw)) 
+                return ReturnLogonError(im.ReturnUrl); 
+                
+            if(Crypto.VerifyHashedPassword(pw, im.PassWord))
             {
-                FormsAuthentication.SetAuthCookie(im.UserName, im.RememberMe);
+                FormsAuthentication.SetAuthCookie(user.Userid.ToString(CultureInfo.InvariantCulture), im.RememberMe);
                 if(!string.IsNullOrEmpty(im.ReturnUrl))
                     return Redirect(im.ReturnUrl);
 
                 return RedirectToAction("Index", "Home");  
             }
             
+            return ReturnLogonError(im.ReturnUrl);
+        }
+
+        private ActionResult ReturnLogonError(string returnUrl)
+        {
             ModelState.AddModelError("", LogonErrorMsg);
-            return Index(im.ReturnUrl);
+            return Index(returnUrl);
         }
 
         [Authorize]
@@ -66,6 +79,7 @@ namespace Squawkings.Controllers
             return RedirectToAction("Index");
         }
     }
+    
     public class LogonInputModel    
     {
         [Required]
@@ -75,11 +89,14 @@ namespace Squawkings.Controllers
         public bool RememberMe { get; set; }
         public string ReturnUrl { get; set; }
     }
+
     public class LogonViewModel    
     {
         public string UserName { get; set; }
+        [DataType(DataType.Password)]
         public string PassWord { get; set; }
         public bool RememberMe { get; set; }
+        [HiddenInput]
         public string ReturnUrl { get; set; }
     }
 }

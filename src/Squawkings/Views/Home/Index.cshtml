@@ -29,30 +29,9 @@
          }
         
         <div class="squawks-container">
-            @foreach (var item in Model.SquawkDisps.Track())
-            {
-                <div class="squawk-item">
-                    <div class="squawk-item-image">
-                        <a href="@Url.Action("Index")">
-                            <img src="../../Content/Images/@(item.AvatarUrl)" alt="View" />
-                        </a>
-                    </div>
-                    <div class="squawk-item-inner">
-                        <div>
-                            <span class="squawk-item-name">
-                                @Html.Display(x=>x.SquawkDisps[Loop.Index].Username)
-                            </span> 
-                            <span>
-                                @Html.Display(x=>x.SquawkDisps[Loop.Index].FullName)
-                            </span>
-                        </div>
-                        <div class="squawk-item-text">
-                            @Html.Display(x=>x.SquawkDisps[Loop.Index].Content)
-                        </div>
-                        <div class="squawk-item-time">
-                            @Html.Display(x=>x.SquawkDisps[Loop.Index].Time)
-                        </div>
-                    </div>
+            @using (Html.Form<GlobalInputModel>("")) {
+                <div class="squawks-container">
+                        @Html.Partial("_sqauwks", Model.SquawkDisps)
                 </div>
             }
         </div>

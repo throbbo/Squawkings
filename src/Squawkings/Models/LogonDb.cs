@@ -8,7 +8,14 @@ using NPoco;
 
 namespace Squawkings.Models
 {
-    
+    public interface ILogonDb
+    {
+        List<User> GetUsers();
+        string GetPasswordByUserName(string userName);
+        bool IsUserNameValid(string userName);
+        UserLogon GetUserLogonByName(string userName);
+    }
+
     public class LogonDb : ILogonDb
     {
         private readonly IDatabase _db;
@@ -31,16 +38,24 @@ namespace Squawkings.Models
 
         public string GetPasswordByUserName(string userName)
         {
-            var pw = _db.ExecuteScalar<string>(@"select usi.password from users u
-	inner join usersecurityinfo usi on u.UserId = usi.UserId
-and u.UserName= @0", userName);
+            var pw = _db.ExecuteScalar<string>(@"select usi.password from usersecurityinfo usi 
+inner join Users u on u.UserId = usi.UserId where u.UserName= @0", userName);
             return pw;
         }
-        
+         
+        public UserLogon GetUserLogonByName(string userName)
+        {
+            var userLogon = _db.ExecuteScalar<UserLogon>(@"select usi.PassWord, u.UserId 
+from users u
+	inner join usersecurityinfo usi on u.UserId = usi.UserId
+and u.UserName= @0", userName);
+            return userLogon;
+        }
+       
         public bool IsUserNameValid(string userName)
         {
-            var isUserValid = GetUsers().Any(x => x.Username == userName);
-            return isUserValid;
+            var userLogon = GetUserLogonByName(userName);
+            return userLogon!=null;
         }
     }
 }

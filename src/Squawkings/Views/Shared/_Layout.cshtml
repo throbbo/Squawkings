@@ -18,7 +18,7 @@
         <div class="link-text"  style="font-size: 16px; text-align:right; padding-right: 20px; color:white;">
             @Html.Link("Home","index","home")
             @Html.Link("Global","index","global")
-            @(string.IsNullOrEmpty(User.Identity.Name) ? Html.Link("Logon", "logon", "index") : Html.Link("Logoff", "logoff", "logon"))
+            @(User.Identity.IsAuthenticated ? Html.Link("Logoff", "logoff", "logon") : Html.Link("Logon", "index", "logon") )
         </div>
     </div>
     <div style="margin-top: 40px;"></div>        
