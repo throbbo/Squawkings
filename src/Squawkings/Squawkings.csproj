@@ -107,6 +107,8 @@
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\SquawkDispsViewModel.cs" />
     <Compile Include="DateExtensions.cs" />
+    <Compile Include="Models\SquawksDb.cs" />
+    <Compile Include="Models\UserDisp.cs" />
     <Compile Include="Models\GlobalDb.cs" />
     <Compile Include="Models\HomeDb.cs" />
     <Compile Include="Models\LogonDb.cs" />
@@ -190,6 +192,8 @@
     <Content Include="Views\Global\Index.cshtml" />
     <Content Include="Views\Shared\_sqauwks.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Shared\_menu.cshtml" />
+    <Content Include="Views\Shared\_profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

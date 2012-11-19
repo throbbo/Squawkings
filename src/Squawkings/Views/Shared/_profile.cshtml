@@ -1,0 +1,20 @@
+﻿@model Squawkings.Models.UserDisp
+
+<div id="profile-item">
+    <div id="profile-image">
+        <a href="@Url.Action("index", "Profile", new { Model.Username })">
+            <img class="avatar" src="@Url.Content("~/Content/Images/"+Model.Avatarurl)" alt="View" />
+        </a>
+    </div>
+    <div id="profile-inner">
+        <div id="profile-name">
+            @Model.Username
+        </div>
+        <div id="profile-text">
+            @Model.FullName
+        </div>
+        <div id="profile-bio">
+            @Model.Bio
+        </div>
+    </div>
+</div>

@@ -23,12 +23,15 @@
 }
 @bold: bold;
 @dfltfontsize: 12px;
+@bannerheight: 45px;
 @hdrfontsize: (@dfltfontsize + 1);
 @sqauwkfontsize: (@dfltfontsize + 2);
 @logoncontwidth: 300px;
+@contwidth: 960px;
 @logonconttopmargin: @logoncontwidth/2;
 @hdrtextcolor: #222;
 
+/* Profile Page */
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 .rounded-corners (@radiusin: 5px) {
   -webkit-border-radius: @radiusin;
@@ -48,6 +51,13 @@ a:active {color:#FFFFFF;}  /* selected link */
 }
 .displaynone {
 	display: none;
+}
+.logon-active {
+	background-color: #357E35;
+	background-image: -webkit-linear-gradient(top, #6CC16C, #357E35);
+	background-image: -moz-linear-gradient(top, #6CC16C, #357E35);
+	background-image: -ms-linear-gradient(top, #6CC16C, #357E35);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6CC16C', endColorstr='#357E35', GradientType=0);
 }
 .field-validation-error
 {
@@ -81,6 +91,7 @@ body {
     font-family: "Helvetica Neue", Sans-Serif; 
     font-size: @dfltfontsize;
     line-height: 18px;
+	margin-top: 45px;
 }
 textarea{
     display: block;
@@ -93,16 +104,13 @@ textarea{
 .container
 {
 	.centered;
-	width: 960px;
+	width: @contwidth;
 }
-.squawk-post, .squawks-container, .squawks-container-top, .squawks-container-bottom, .squawk-item {
+.squawk-post, .squawks-container, .squawk-item {
     background-color: white;
     color: (@hdrtextcolor*5/2);
     text-align: left;
     border-bottom: @stdborderwidth @stdbordertype @bkgcolor;
-    min-height:110px;
-    height:auto !important;
-    height:100px; 
   	.centered;
 }
 .squawk-item {
@@ -134,7 +142,7 @@ textarea{
     -moz-border-radius-bottomleft: @radius;
     -moz-border-radius-bottomright: @radius;
 }
-.squawk-item-image {
+.avatar {
     width: 57px;
     height: 57px;
     -webkit-box-shadow: 0px 0px @pad-small1 @shadowcolor; 
@@ -160,9 +168,41 @@ textarea{
     padding: @pad-std 0 0 0;
 	color: @timecolor;
 }
-#header {
-    height: 100px;
+
+#profile-item {
+    background-color: white;
+    color: (@hdrtextcolor*5/2);
+    text-align: left;
+    border-bottom: @stdborderwidth @stdbordertype @bkgcolor;
+  	.centered;
+	position: relative;
+	margin-bottom: 10px;
+
+	#profile-display {
+		margin: @margincentre;
+		margin-top: 300px;
+	}
+	#profile-dialog {
+		margin-top: @logonconttopmargin; 
+		margin-left: auto;
+		margin-right: auto;
+		background-color: white;
+		.rounded-corners;
+		border: (@stdborderwidth*2) @stdbordertype @bkgcolor;
+		padding: @pad-std;
+	}
+
+
+	#profile-name {
+		font-size: 28px;
+	}
+	#profile-inner {
+		padding: @pad-std @pad-std @pad-std 82px;
+	}
 }
+
+
+
 #global-header-text {
     color:(@hdrtextcolor*2.5); 
     font-size: 50px;
@@ -198,12 +238,34 @@ textarea{
     padding: @pad-std;
 }
 #logon-banner { 
-    height: 45px;
+    height: @bannerheight;
     background:  url("images/header.png") repeat-x;
 	position: fixed;
 	top: 0px;
 	width: 100%;
 	margin-bottom: 50px;
+	text-align: right;
+	z-index:100000; 
+
+	ul {
+		color:white;
+		font-weight: bold;
+		font-family: arial;
+		list-style-type: none;
+		height: @bannerheight;
+		margin: 0 10px;   
+		li {  
+            display: inline-block;  
+			padding-top: 10px;
+	        margin: 0 10px;   
+			a {  
+                text-decoration: none;  
+                height: @bannerheight;
+                text-align: center;  
+	           }  
+        }  
+
+	}
 }
 .inputheightwidth(@marginptop: @pad-small1, @marginpbot: @pad-small1) {
     width: 100%;
@@ -225,10 +287,7 @@ input.logon-input-password {
 	width: @logoncontwidth;
 }
 
-#profile-display {
-	margin: @margincentre;
-	margin-top: 300px;
-}
+
 
 .input-validation-error.checkbox,
 .input-validation-error.radio,

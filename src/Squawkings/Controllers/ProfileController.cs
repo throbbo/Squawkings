@@ -9,42 +9,43 @@ namespace Squawkings.Controllers
 {
     public class ProfileController : Controller
     {
-        private readonly ILogonDb _logonDb;
+        private readonly ISquawksDb _squawksDb;
 
         public ProfileController() 
-            : this(new LogonDb())
+            : this(new SquawksDb())
         {
             
         }
-        public ProfileController(ILogonDb logonDb)
+        public ProfileController(ISquawksDb squawksDb)
         {
-            _logonDb = logonDb;
+            _squawksDb = squawksDb;
         }
 
-        [Authorize]
         public ActionResult Index(string userName)
         {
-            var user = _logonDb.GetUsers().FirstOrDefault(x => x.Username == userName) ?? new User();
             var vm = new ProfileViewModel()
                          {
-                             Avatarurl = user.Avatarurl ?? "placeholder-profile-img.jpg",
-                             Email = user.Email,
-                             Firstname = user.Firstname,
-                             Lastname = user.Lastname,
-                             Username = userName
+                             SquawkDisps = _squawksDb.GetProfileSquawks(userName),
+                             ProfileDetails = _squawksDb.UserDispGetProfileByUserName(userName)
                          };
             return View(vm);
         }
 
     }
+    
     public class ProfileViewModel
     {
+        public ProfileViewModel()
+        {
+            SquawkDisps = new List<SquawkDisp>();
+        }
+        public List<SquawkDisp> SquawkDisps { get; set; }
+        public UserDisp ProfileDetails { get; set; }
+    }
+
+    public class ProfileInputModel
+    {
         public int Userid { get; set; }
-        public string Username { get; set; }
-        public string Firstname { get; set; }
-        public string Lastname { get; set; }
-        public string Email { get; set; }
-        public string Avatarurl { get; set; }
-        public string Bio { get; set; }
+        public int FollowUserid { get; set; }
     }
 }

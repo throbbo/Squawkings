@@ -1,35 +1,20 @@
-﻿@model Squawkings.Controllers.ProfileViewModel
+﻿@using Squawkings.Controllers
+@model Squawkings.Controllers.ProfileViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title>Index</title>
-</head>
-<body>
     
-<div id="logon-container">
-    <div id="logon-dialog">
-        <div>
-            <h3>Profile Details:</h3>
-        </div>
-        <div>
-            <span class="global-header-text">User: </span>
-            <span> @Html.Display(x=>x.Firstname) @Html.Display(x=>x.Lastname) [@Html.Display(x=>x.Username)]</span>
-        </div>
-        <div>
-            <span class="global-header-text">Avatar</span> 
-            <span>@Html.Display(x=>x.Avatarurl)</span>
-        </div>
-        <div>
-            <span class="global-header-text">Bio</span> 
-            <span>@Html.Display(x=>x.Bio )</span>
-        </div>
-       
+<div class="container">
+    <div id="header">
+        @Html.Partial("_profile", Model.ProfileDetails)
     </div>
-</div>        
-</body>
-</html>
+ 
+    <div class="squawks-container">
+        @using (Html.Form<GlobalInputModel>("")) {
+            <div class="squawks-container">
+                @Html.Partial("_sqauwks", Model.SquawkDisps)
+            </div>
+        }
+    </div>
+</div>
+
