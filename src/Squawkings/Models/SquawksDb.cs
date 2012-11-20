@@ -11,7 +11,7 @@ namespace Squawkings.Models
     public interface ISquawksDb
     {
         List<SquawkDisp> GetProfileSquawks(string userName);
-         UserDisp UserDispGetProfileByUserName(string userName);
+         UserDisp UserDispGetProfileByUserName(string userName, int currentUserId);
     }
 
     public class SquawksDb : ISquawksDb
@@ -37,9 +37,21 @@ where username = @0", userName);
             return squawks;
         }
 
-        public UserDisp UserDispGetProfileByUserName(string userName)
+        public UserDisp UserDispGetProfileByUserName(string userName, int currentUserId)
         {
-            var userDisp = _db.FirstOrDefault<UserDisp>("select * from users where username = @0",userName);
+            var userDisp = _db.FirstOrDefault<UserDisp>(@"select *, 
+    (select count(1)
+		from Followers f
+	where u.UserId = f.FollowingUserId) Followers, 
+	(select count(1) 
+		from Followers f
+	where u.UserId = f.UserId) Following, 
+	(select count(1) 
+		from Followers f
+	where f.FollowingUserId = u.UserId 
+	and f.UserId = @0) IsFollowing
+from users u 
+where username = @1", currentUserId, userName);
 
             return userDisp ?? new UserDisp();
         }

@@ -105,8 +105,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogonController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
-    <Compile Include="Controllers\SquawkDispsViewModel.cs" />
     <Compile Include="DateExtensions.cs" />
+    <Compile Include="Models\Follower.cs" />
+    <Compile Include="Models\Squawk.cs" />
     <Compile Include="Models\SquawksDb.cs" />
     <Compile Include="Models\UserDisp.cs" />
     <Compile Include="Models\GlobalDb.cs" />

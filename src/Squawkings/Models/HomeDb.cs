@@ -11,6 +11,7 @@ namespace Squawkings.Models
     public interface IHomeDb
     {
         List<SquawkDisp> GetHomeSquawks(int userId);
+        void AddSquawk(int userId, string content);
     }
 
     public class HomeDb : IHomeDb
@@ -39,6 +40,18 @@ from Followers f
 where f.UserId=@0 ) h on h.userid = s.userid    ", userId);
 
             return squawks;
+        }
+
+        public void AddSquawk(int userId, string content)
+        {
+            var squawk = new Squawk
+                             {
+                                 Content = content,
+                                 CreatedAt = DateTime.UtcNow,
+                                 UserId = userId
+                             };
+            //var sql = "insert into squawks (UserId,CreatedAt,Content) values (@0, @1, @2) ";
+            _db.Insert(squawk);
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using NPoco;
 
 namespace Squawkings.Models
@@ -19,5 +20,10 @@ namespace Squawkings.Models
         public string Email { get; set; }
         public string Avatarurl { get; set; }
         public string Bio { get; set; }    
+        public int Followers { get; set; }
+        public int Following { get; set; }
+        public bool IsFollowing { get; set; }
+        public bool UnfollowButton { get; set; }
+        public bool FollowButton { get; set; }
     }
 }

@@ -17,13 +17,13 @@
             </div>
         </div>
         
-        @using (Html.Form<LogonInputModel>("logoff","logon")) {
+        @using (Html.Form<SqauwkDispsInputModel>("Squawk","Home")) {
             <div class="squawk-post">
                 <div class="squawk-post-top">
-                    <textarea cols="110" rows="4">This is my first squawk!</textarea>
+                    <textarea cols="110" rows="4" name="content">This is my first squawk!</textarea>
                 </div>
                 <div class="squawk-post-bottom">
-                    <input id="post-button" type="button" value="Squawk" />
+                    @Html.Submit("Squawk")
                 </div>
             </div>  
          }

@@ -1,20 +1,51 @@
-﻿@model Squawkings.Models.UserDisp
+﻿@using Squawkings.Controllers
+@model Squawkings.Models.UserDisp
 
 <div id="profile-item">
     <div id="profile-image">
-        <a href="@Url.Action("index", "Profile", new { Model.Username })">
+        <a href="#">
             <img class="avatar" src="@Url.Content("~/Content/Images/"+Model.Avatarurl)" alt="View" />
         </a>
     </div>
     <div id="profile-inner">
-        <div id="profile-name">
-            @Model.Username
+        <div id="profile-inner-left">
+            <div id="profile-name">
+                @Model.Username
+            </div>
+            <div id="profile-text">
+                @Model.FullName
+            </div>
+            <div id="profile-bio">
+                @Model.Bio
+            </div>
         </div>
-        <div id="profile-text">
-            @Model.FullName
-        </div>
-        <div id="profile-bio">
-            @Model.Bio
+        <div id="profile-inner-buttons">
+            <div>
+                <span>@Model.Followers</span>
+                <span>Followers</span>
+            </div>
+            <hr/>
+            <div>
+                <span>@Model.Following</span>
+                <span>Following</span> 
+            </div>
+            <hr/>
+            <div>
+                @if(Model.UnfollowButton)
+                {
+                    using (Html.Form<ProfileInputModel>("UnFollow","Profile")) {
+                        @Html.Input(x => x.Username).Attr("type", "hidden")
+                        @Html.Submit("UnFollow").AddClass("btn-follower")
+                    }                    
+                }
+                else if(Model.FollowButton)
+                {
+                    using (Html.Form<ProfileInputModel>("Follow","Profile")) {
+                        @Html.Input(x => x.Username).Attr("type", "hidden")
+                        @Html.Submit("Follow").AddClass("btn-follower")
+                    }   
+                }
+            </div>
         </div>
     </div>
 </div>

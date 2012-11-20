@@ -192,16 +192,38 @@ textarea{
 		padding: @pad-std;
 	}
 
-
 	#profile-name {
 		font-size: 28px;
 	}
 	#profile-inner {
 		padding: @pad-std @pad-std @pad-std 82px;
+		position: relative;
+
+		#profile-inner-left {
+			width: 760px;
+			display: inline-block;
+		}
+		#profile-inner-buttons {
+			display: inline-block;
+			text-align: right;
+			font-size: 15px;
+		}
+		.btn-follower {
+			width: 90px;
+			margin-top: 3px;
+			font-family: Tahoma;
+			font-size: 15px;
+			font-weight: standard; 
+		}
 	}
 }
 
-
+hr {
+	height: 1px;
+	padding:0;
+	margin: 0;
+	padding-bottom: 3px;
+}
 
 #global-header-text {
     color:(@hdrtextcolor*2.5); 
@@ -252,12 +274,13 @@ textarea{
 		font-weight: bold;
 		font-family: arial;
 		list-style-type: none;
-		height: @bannerheight;
 		margin: 0 10px;   
-		li {  
-            display: inline-block;  
-			padding-top: 10px;
-	        margin: 0 10px;   
+		li {
+			display: inline-block;  
+			padding: 10px 0;
+	        margin: 0 10px;
+			width: 80px;  
+			text-align: center;   
 			a {  
                 text-decoration: none;  
                 height: @bannerheight;
