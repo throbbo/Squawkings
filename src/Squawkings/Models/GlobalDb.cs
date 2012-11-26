@@ -30,7 +30,8 @@ namespace Squawkings.Models
         public List<SquawkDisp> GetGlobalSquawks()
         {
             var squawks = _db.Fetch<SquawkDisp>(@"select * from squawks s 
-	inner join Users u on u.UserId = s.UserId");
+	inner join Users u on u.UserId = s.UserId
+ order by CreatedAt desc");
 
             return squawks;
         }

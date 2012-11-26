@@ -30,9 +30,10 @@ namespace Squawkings.Models
 
         public List<SquawkDisp> GetProfileSquawks(string userName)
         {
-            var squawks = _db.Fetch<SquawkDisp>(@"select * from squawks s 
+            var squawks = _db.Fetch<SquawkDisp>(@"select top 10 * from squawks s 
 	inner join Users u on u.UserId = s.UserId
-where username = @0", userName);
+where username = @0
+order by CreatedAt desc", userName);
 
             return squawks;
         }

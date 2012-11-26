@@ -37,7 +37,7 @@ union
 select f.followinguserid, uf.AvatarUrl, uf.UserName, uf.FirstName, uf.LastName 
 from Followers f 
 	inner join Users uf on f.FollowingUserId = uf.UserId
-where f.UserId=@0 ) h on h.userid = s.userid    ", userId);
+where f.UserId=@0 ) h on h.userid = s.userid order by CreatedAt desc", userId);
 
             return squawks;
         }

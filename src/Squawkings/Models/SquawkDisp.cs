@@ -7,6 +7,7 @@ namespace Squawkings.Models
         public string Content { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime Time { get; set; }
+        public string TimeDisplay { get; set; }
 
         public string Username { get; set; }
         public string FirstName { get; set; }
