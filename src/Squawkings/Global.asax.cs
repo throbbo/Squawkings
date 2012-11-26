@@ -28,6 +28,7 @@ namespace Squawkings
             routes.MapRoute("Logon",  "Logon/{action}/{id}", new { controller = "Logon", action = "Index", id = UrlParameter.Optional } );
             routes.MapRoute("Global", "Global/{action}/{id}", new { controller = "Global", action = "Index", id = UrlParameter.Optional} );
             routes.MapRoute("Footer", "Footer/{action}/{id}", new { controller = "Footer", action = "Index", id = UrlParameter.Optional} );
+            routes.MapRoute("UploadFile", "UploadFile/{action}/{id}", new { controller = "UploadFile", action = "Index", id = UrlParameter.Optional} );
 
             routes.MapRoute(
                 "Profile", // Route name
@@ -52,6 +53,7 @@ namespace Squawkings
             HtmlConventionFactory.Add(new DefaultHtmlConventions());
             HtmlConventionFactory.Add(new DataAnnotationHtmlConventions());
             HtmlConventionFactory.Add(new DataAnnotationValidationHtmlConventions());
+            HtmlConventionFactory.Add(new UploadFileConventions());
         }
     }
 }

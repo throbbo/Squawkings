@@ -40,7 +40,10 @@ namespace Squawkings.Controllers
                 vm.ProfileDetails.FollowButton = !vm.ProfileDetails.IsFollowing;
             }
 
-            vm.ProfileDetails.DisplayUrl = vm.ProfileDetails.IsGravatar ? BuildGravatar(vm.ProfileDetails) : vm.ProfileDetails.AvatarUrl;
+            if (vm.ProfileDetails.IsGravatar)
+                vm.ProfileDetails.DisplayUrl = BuildGravatar(vm.ProfileDetails);
+            else
+                vm.ProfileDetails.DisplayUrl = "~/Content/Images/" + vm.ProfileDetails.AvatarUrl;
 
             return View(vm);
         }
@@ -70,6 +73,7 @@ namespace Squawkings.Controllers
 
             return RedirectToAction("index","Profile", new {userName = im.UserName});
         }
+
     }
     
     public class ProfileViewModel
@@ -85,7 +89,7 @@ namespace Squawkings.Controllers
     public class ProfileInputModel
     {
         public string UserName { get; set; }
-
+        
         public HttpPostedFileBase Image { get; set; }
     }
 

@@ -1,0 +1,28 @@
+﻿@using Squawkings.Controllers
+@model Squawkings.Controllers.UploadFileViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    
+<div class="container">
+    <div id="header">
+        Set your Avatar
+    </div>
+
+ 
+    <div class="uploadfile-container">
+        
+        @using (Html.Form<UploadFileInputModel>("UploadFile", "UploadFile", modifier: x => x.Attr("enctype","multipart/form-data"))) {
+            <div>
+                <span>Use Gravatar</span>
+                <span>@Html.Input(x=>x.IsGravatar)</span>
+
+                <span>Upload File</span>
+                <span>@Html.Input(x=>x.File)</span>
+         
+                <div>@Html.Submit("Update Changes")</div>
+            </div>
+        }
+    </div>
+</div>
+

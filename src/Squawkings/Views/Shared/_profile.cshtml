@@ -2,13 +2,12 @@
 @model Squawkings.Models.UserDisp
 
 <div id="profile-item">
-    <div id="profile-image">
-        <a href="#">
-            <img class="avatar" src="@Url.Content("~/Content/Images/"+Model.AvatarUrl)" alt="View" />
-        </a>
 
-    </div>
     <div id="profile-inner">
+        <a href="@Url.Action("Index", "UploadFile")">
+            <img class="avatar"  src="@Url.Content("~/Content/Images/Robbo.jpg")" alt="View" />
+        </a>
+    
         <div id="profile-inner-left">
             <div id="profile-name">
                 @Model.UserName

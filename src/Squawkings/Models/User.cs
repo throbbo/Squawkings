@@ -6,7 +6,7 @@ using NPoco;
 
 namespace Squawkings.Models
 {
-    [System.Web.DynamicData.TableName("Users"), PrimaryKey("UserId")]
+    [TableName("Users"), PrimaryKey("UserId")]
     public class User
     {
         public int Userid { get; set; }
