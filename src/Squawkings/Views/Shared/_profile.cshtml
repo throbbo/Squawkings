@@ -4,13 +4,14 @@
 <div id="profile-item">
     <div id="profile-image">
         <a href="#">
-            <img class="avatar" src="@Url.Content("~/Content/Images/"+Model.Avatarurl)" alt="View" />
+            <img class="avatar" src="@Url.Content("~/Content/Images/"+Model.AvatarUrl)" alt="View" />
         </a>
+
     </div>
     <div id="profile-inner">
         <div id="profile-inner-left">
             <div id="profile-name">
-                @Model.Username
+                @Model.UserName
             </div>
             <div id="profile-text">
                 @Model.FullName
@@ -34,14 +35,14 @@
                 @if(Model.UnfollowButton)
                 {
                     using (Html.Form<ProfileInputModel>("UnFollow","Profile")) {
-                        @Html.Input(x => x.Username).Attr("type", "hidden")
+                        @Html.Input(x => x.UserName).Attr("type", "hidden")
                         @Html.Submit("UnFollow").AddClass("btn-follower")
                     }                    
                 }
                 else if(Model.FollowButton)
                 {
                     using (Html.Form<ProfileInputModel>("Follow","Profile")) {
-                        @Html.Input(x => x.Username).Attr("type", "hidden")
+                        @Html.Input(x => x.UserName).Attr("type", "hidden")
                         @Html.Submit("Follow").AddClass("btn-follower")
                     }   
                 }

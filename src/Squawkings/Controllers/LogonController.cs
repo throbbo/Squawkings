@@ -41,7 +41,7 @@ namespace Squawkings.Controllers
             if (!ModelState.IsValid) 
                 return ReturnLogonError(im.ReturnUrl);
 
-            var user = _logonDb.GetUsers().FirstOrDefault(x=>x.Username==im.UserName); 
+            var user = _logonDb.GetUsers().FirstOrDefault(x=>x.UserName==im.UserName); 
             if(user==null) 
                 return ReturnLogonError(im.ReturnUrl);
 

@@ -11,7 +11,7 @@ namespace Squawkings.Models
     public interface ISquawksDb
     {
         List<SquawkDisp> GetProfileSquawks(string userName);
-         UserDisp UserDispGetProfileByUserName(string userName, int currentUserId);
+        UserDisp UserDispGetProfileByUserName(string userName, int currentUserId);
     }
 
     public class SquawksDb : ISquawksDb
@@ -21,7 +21,7 @@ namespace Squawkings.Models
         public SquawksDb()
             : this(new Database("Squawkings"))
         {
-            
+
         }
         public SquawksDb(IDatabase db)
         {
@@ -37,6 +37,7 @@ order by CreatedAt desc", userName);
 
             return squawks;
         }
+
 
         public UserDisp UserDispGetProfileByUserName(string userName, int currentUserId)
         {

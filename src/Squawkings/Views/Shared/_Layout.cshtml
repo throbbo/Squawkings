@@ -14,7 +14,8 @@
 </head>
 
 <body>
-    @Html.Partial("_menu") 
+    @Html.Action("Index", "Menu")
     @RenderBody()
+    @Html.Action("Index", "Footer")
 </body>
 </html>

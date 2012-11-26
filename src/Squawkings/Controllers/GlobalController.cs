@@ -26,6 +26,7 @@ namespace Squawkings.Controllers
             var vm = new GlobalViewModel { SquawkDisps = _globalDb.GetGlobalSquawks() };
             return View(vm);
         }
+
     }
 
     public class GlobalInputModel

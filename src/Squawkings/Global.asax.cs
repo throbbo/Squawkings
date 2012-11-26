@@ -27,6 +27,7 @@ namespace Squawkings
             routes.MapRoute("Home",   "Home/{action}/{id}", new { controller = "Home", action = "Index", id = UrlParameter.Optional } );
             routes.MapRoute("Logon",  "Logon/{action}/{id}", new { controller = "Logon", action = "Index", id = UrlParameter.Optional } );
             routes.MapRoute("Global", "Global/{action}/{id}", new { controller = "Global", action = "Index", id = UrlParameter.Optional} );
+            routes.MapRoute("Footer", "Footer/{action}/{id}", new { controller = "Footer", action = "Index", id = UrlParameter.Optional} );
 
             routes.MapRoute(
                 "Profile", // Route name

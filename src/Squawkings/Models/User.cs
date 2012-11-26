@@ -9,19 +9,13 @@ namespace Squawkings.Models
     [System.Web.DynamicData.TableName("Users"), PrimaryKey("UserId")]
     public class User
     {
-        [Column("UserId")]
         public int Userid { get; set; }
-        [Column("UserName")]
-        public string Username { get; set; }
-        [Column("FirstName")]
-        public string Firstname { get; set; }
-        [Column("LastName")]
-        public string Lastname { get; set; }
-        [Column("Email")]
+        public string UserName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string Email { get; set; }
-        [Column("AvatarUrl")]
-        public string Avatarurl { get; set; }
-        [Column("Bio")]
+        public string AvatarUrl { get; set; }
         public string Bio { get; set; }    
+        public bool IsGravatar { get; set; }    
     }
 }
