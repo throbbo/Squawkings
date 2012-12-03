@@ -13,49 +13,55 @@ namespace Squawkings.Controllers
     {
         private readonly ISquawksDb _squawksDb;
         private readonly IDatabase _db;
+    	private readonly IGravatarsHelper _gravatarHelper;
 
-        public ProfileController() 
-            : this(new SquawksDb(), new Database("Squawkings"))
+    	public ProfileController() 
+            : this(new SquawksDb(), new Database("Squawkings"), new GravatarsHelper())
         {
             
         }
-        public ProfileController(ISquawksDb squawksDb, IDatabase db)
+        public ProfileController(ISquawksDb squawksDb, IDatabase db, IGravatarsHelper gravatarHelper)
         {
             _squawksDb = squawksDb;
             _db = db;
+        	_gravatarHelper = gravatarHelper;
+        }
+
+        public ActionResult LoggedInProfile()
+        {
+            var user = _db.SingleOrDefaultById<User>(User.Identity.Id());
+            if (user!=null && !string.IsNullOrEmpty(user.UserName))
+				return RedirectToAction("Index", "Home", new { userName = user.UserName }); 
+
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Index(string userName)
         {
+
+
             var vm = new ProfileViewModel()
                          {
-                             SquawkDisps = _squawksDb.GetProfileSquawks(userName),
+							 SquawkDisps = _gravatarHelper.SetUrls(_squawksDb.GetProfileSquawks(userName)),
                              ProfileDetails = _squawksDb.UserDispGetProfileByUserName(userName, User.Identity.Id())
                          };
+        	vm.ProfileDetails.IsOwnProfile = vm.ProfileDetails.Userid == User.Identity.Id();
 
-
-            if(vm.ProfileDetails.Userid != User.Identity.Id())
+			if (!vm.ProfileDetails.IsOwnProfile)
             {
                 vm.ProfileDetails.UnfollowButton = vm.ProfileDetails.IsFollowing;
                 vm.ProfileDetails.FollowButton = !vm.ProfileDetails.IsFollowing;
             }
 
             if (vm.ProfileDetails.IsGravatar)
-                vm.ProfileDetails.DisplayUrl = BuildGravatar(vm.ProfileDetails);
+                vm.ProfileDetails.DisplayUrl = _gravatarHelper.BuildGravatar(vm.ProfileDetails.Email);
             else
-                vm.ProfileDetails.DisplayUrl = "~/Content/Images/" + vm.ProfileDetails.AvatarUrl;
+                vm.ProfileDetails.DisplayUrl = "~/Content/" + vm.ProfileDetails.AvatarUrl;
 
             return View(vm);
         }
 
-        public string BuildGravatar(UserDisp user)
-        {
-            // Build Gravatar
-            return GravatarHelper.GravatarHelper.CreateGravatarUrl(user.Email, 57,
-                                                            Url.Content(
-                                                                @".~/Content/Images/placeholder-profile-img2.jpg"),
-                                                            GravatarRating.G, false, false);
-        }
+
 
         [Authorize]
         public ActionResult Follow(ProfileInputModel im)

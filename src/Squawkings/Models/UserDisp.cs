@@ -27,5 +27,6 @@ namespace Squawkings.Models
         public bool FollowButton { get; set; }
         public bool IsGravatar { get; set; }
         public string DisplayUrl { get; set; }
-    }
+		public bool IsOwnProfile { get; set; }
+	}
 }

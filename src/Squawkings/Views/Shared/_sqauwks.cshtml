@@ -6,8 +6,8 @@
     <div class="squawk-item">
         <div class="squawk-item-image">
 
-            <a href="@Url.Action("Index", "Profile", new {username = item.Username})" >
-                <img class="avatar" src="@Url.Content("~/Content/Images/"+item.AvatarUrl)" alt="View" />
+            <a href="@Url.Action("Index", "Profile", new { username = item.Username })" >
+                <img class="avatar" src="@Url.Content(item.AvatarUrl)" alt="View" />
             </a>
         </div>
         <div class="squawk-item-inner">

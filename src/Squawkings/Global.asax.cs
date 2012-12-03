@@ -29,7 +29,7 @@ namespace Squawkings
             routes.MapRoute("Global", "Global/{action}/{id}", new { controller = "Global", action = "Index", id = UrlParameter.Optional} );
             routes.MapRoute("Footer", "Footer/{action}/{id}", new { controller = "Footer", action = "Index", id = UrlParameter.Optional} );
             routes.MapRoute("UploadFile", "UploadFile/{action}/{id}", new { controller = "UploadFile", action = "Index", id = UrlParameter.Optional} );
-
+			
             routes.MapRoute(
                 "Profile", // Route name
                 "{username}", // URL with parameters

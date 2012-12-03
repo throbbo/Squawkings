@@ -112,6 +112,7 @@
     <Compile Include="Controllers\UploadFileController.cs" />
     <Compile Include="DateExtensions.cs" />
     <Compile Include="Controllers\FooterController.cs" />
+    <Compile Include="GravatarHelper.cs" />
     <Compile Include="Models\Follower.cs" />
     <Compile Include="Models\FooterView.cs" />
     <Compile Include="Models\Squawk.cs" />

@@ -6,7 +6,7 @@
     
 <div class="container">
     <div id="header">
-        Set your Avatar
+        <h1>Set your Avatar</h1>
     </div>
 
  
@@ -14,12 +14,13 @@
         
         @using (Html.Form<UploadFileInputModel>("UploadFile", "UploadFile", modifier: x => x.Attr("enctype","multipart/form-data"))) {
             <div>
-                <span>Use Gravatar</span>
+				<span>Use Gravatar</span>
                 <span>@Html.Input(x=>x.IsGravatar)</span>
-
+				<br/><br/>
                 <span>Upload File</span>
                 <span>@Html.Input(x=>x.File)</span>
-         
+				
+				<br/><br/>
                 <div>@Html.Submit("Update Changes")</div>
             </div>
         }

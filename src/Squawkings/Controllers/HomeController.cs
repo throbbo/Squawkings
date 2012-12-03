@@ -11,26 +11,32 @@ namespace Squawkings.Controllers
     public class HomeController : Controller
     {
         private readonly IHomeDb _homeDb;
+		private readonly IGravatarsHelper _gravatarHelper;
 
-        public HomeController() 
-            : this(new HomeDb())
+    	public HomeController()
+			: this(new HomeDb(), new GravatarsHelper())
         {
         }
-        public HomeController(IHomeDb homeDb)
+		public HomeController(IHomeDb homeDb, IGravatarsHelper gravatarHelper)
         {
-            _homeDb = homeDb;
+        	_homeDb = homeDb;
+			_gravatarHelper = gravatarHelper;
         }
 
-        public List<SquawkDisp> GetSquawkDisps()
+    	public List<SquawkDisp> GetSquawkDisps()
         {
             var squawks = _homeDb.GetHomeSquawks(User.Identity.Id());
+
+
+
             return squawks;
         }
+
 
         [Authorize]
         public ActionResult Index()
         {
-            var vm = new SquawkDispsViewModel {SquawkDisps = GetSquawkDisps()};
+			var vm = new SquawkDispsViewModel { SquawkDisps = _gravatarHelper.SetUrls(GetSquawkDisps()) };
             return View(vm);
         }
 

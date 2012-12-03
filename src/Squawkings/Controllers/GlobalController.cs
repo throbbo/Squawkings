@@ -10,20 +10,22 @@ namespace Squawkings.Controllers
     public class GlobalController : Controller
     {
         private readonly IGlobalDb _globalDb;
+		private readonly IGravatarsHelper _gravatarHelper;
 
-        public GlobalController() 
-            : this(new GlobalDb())
+    	public GlobalController()
+			: this(new GlobalDb(), new GravatarsHelper())
         {
         }
-        public GlobalController(IGlobalDb globalDb)
-        {
-            _globalDb = globalDb;
-        }
+		public GlobalController(IGlobalDb globalDb, IGravatarsHelper gravatarHelper)
+		{
+			_globalDb = globalDb;
+			_gravatarHelper = gravatarHelper;
+		}
 
-        [Authorize]
+    	[Authorize]
         public ActionResult Index()
-        {
-            var vm = new GlobalViewModel { SquawkDisps = _globalDb.GetGlobalSquawks() };
+    	{
+			var vm = new GlobalViewModel { SquawkDisps = _gravatarHelper.SetUrls(_globalDb.GetGlobalSquawks()) };
             return View(vm);
         }
 

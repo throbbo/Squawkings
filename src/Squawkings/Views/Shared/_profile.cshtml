@@ -4,10 +4,10 @@
 <div id="profile-item">
 
     <div id="profile-inner">
-        <a href="@Url.Action("Index", "UploadFile")">
-            <img class="avatar"  src="@Url.Content("~/Content/Images/Robbo.jpg")" alt="View" />
+        <a href="@(Model.IsOwnProfile?Url.Action("Index", "UploadFile"):"#")">
+            <img class="avatar"  src="@Url.Content(Model.DisplayUrl)" alt="View" />
         </a>
-    
+
         <div id="profile-inner-left">
             <div id="profile-name">
                 @Model.UserName

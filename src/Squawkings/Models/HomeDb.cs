@@ -32,9 +32,9 @@ namespace Squawkings.Models
         {
             var squawks = _db.Fetch<SquawkDisp>(@"select * from squawks s
 	inner join (
-select UserId, AvatarUrl, UserName, FirstName, LastName from Users where UserId=@0
+select UserId, AvatarUrl, UserName, FirstName, LastName, Email, IsGravatar from Users where UserId=@0
 union
-select f.followinguserid, uf.AvatarUrl, uf.UserName, uf.FirstName, uf.LastName 
+select f.followinguserid, uf.AvatarUrl, uf.UserName, uf.FirstName, uf.LastName, uf.Email, uf.IsGravatar 
 from Followers f 
 	inner join Users uf on f.FollowingUserId = uf.UserId
 where f.UserId=@0 ) h on h.userid = s.userid order by CreatedAt desc", userId);
