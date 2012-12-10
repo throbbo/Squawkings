@@ -15,11 +15,6 @@ namespace Squawkings.Controllers
         private readonly IDatabase _db;
     	private readonly IGravatarsHelper _gravatarHelper;
 
-    	public ProfileController() 
-            : this(new SquawksDb(), new Database("Squawkings"), new GravatarsHelper())
-        {
-            
-        }
         public ProfileController(ISquawksDb squawksDb, IDatabase db, IGravatarsHelper gravatarHelper)
         {
             _squawksDb = squawksDb;

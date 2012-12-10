@@ -16,11 +16,7 @@ namespace Squawkings.Controllers
     {
         private readonly ILogonDb _logonDb;
 
-        public LogonController() 
-            : this(new LogonDb())
-        {
-        }
-        public LogonController(ILogonDb logonDb)
+		public LogonController(ILogonDb logonDb)
         {
             _logonDb = logonDb;
         }

@@ -13,11 +13,6 @@ namespace Squawkings.Controllers
     {
         private readonly IDatabase _db;
 
-        public UploadFileController()
-            : this(new Database("Squawkings"))
-        {
-            
-        } 
         public UploadFileController(IDatabase db)
         {
             _db = db;
