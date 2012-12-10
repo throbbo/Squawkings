@@ -24,6 +24,12 @@ namespace Squawkings.Controllers
             return View();
         }
 
+		[Authorize]
+		public ActionResult Cancel(UploadFileInputModel im)
+		{
+			return RedirectToAction("Index", "Profile", new { username = _db.SingleById<User>(User.Identity.Id()).UserName });
+		}
+
         [Authorize]
         [HttpPost]
         public ActionResult UploadFile(UploadFileInputModel im)
@@ -38,7 +44,7 @@ namespace Squawkings.Controllers
 
 			if(!im.IsGravatar) {
 				var file = im.File;
-				
+
 				var fileNameUrl = string.Format("dev_images/{0}_d.jpg", user.UserName );
 
 				if (string.IsNullOrEmpty(fileNameUrl)) {

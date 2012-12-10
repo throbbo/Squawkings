@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -23,8 +24,6 @@ namespace Squawkings.Controllers
         {
             var squawks = _homeDb.GetHomeSquawks(User.Identity.Id());
 
-
-
             return squawks;
         }
 
@@ -37,13 +36,21 @@ namespace Squawkings.Controllers
         }
 
         [Authorize]
-        public ActionResult Squawk(SqauwkDispsInputModel im)
+		[HttpPost]
+        public ActionResult Index(SqauwkDispsInputModel im)
         {
+			if(string.IsNullOrEmpty(im.Content))
+			{
+				//ModelState.AddModelError("squawk","The field 'squawk' is required");
+				var vm = new SquawkDispsViewModel { SquawkDisps = _gravatarHelper.SetUrls(GetSquawkDisps()) };
+				return View("Index", vm);
+			}
+
             var userId = User.Identity.Id();
 
             _homeDb.AddSquawk(userId, im.Content);
 
-            return RedirectToAction("index");
+            return RedirectToAction("Index","Home");
         }
     }
 
@@ -60,6 +67,8 @@ namespace Squawkings.Controllers
 
     public class SqauwkDispsInputModel
     {
+		[StringLength(400, ErrorMessage = "You have entered text too long")]
+		[Required]
         public string Content { get; set; }
     }
 }

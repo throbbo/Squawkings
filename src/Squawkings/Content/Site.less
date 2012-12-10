@@ -40,7 +40,11 @@
   -o-border-radius: @radiusin;
   border-radius: @radiusin;
 }
-a:link {color:#FFFFFF;}      /* unvisited link */
+
+form {
+	margin:0;
+}
+
 a:visited {color:#FFFFFF;}  /* visited link */
 a:hover {color:#F7C600;}  /* mouse over link */
 a:active {color:#FFFFFF;}  /* selected link */ 
@@ -106,6 +110,41 @@ textarea{
 	.centered;
 	width: @contwidth;
 }
+
+.uploadfile-container
+{
+	.centered;
+	width: @contwidth;
+	position: relative;
+	#uploadfile-header {
+		padding: 25px 0;
+		font-size: 50px;
+		color: #565656;
+	}
+	#uploadfile-header-text {
+		padding: 15px 0;
+		font-size: 13px;
+		color: #565656;
+	}
+	#uploadfile-details {
+		text-align: left;
+		.rounded-corners;
+		margin: @margincentre;
+		padding: @pad-std;
+		background-color: white;
+		
+		.uploadfile-label  {
+			font-size: 14px;
+			font-wight: bold;
+		}
+	}
+}
+
+.uploadfile-label  {
+	font-size: 14px;
+	font-wight: bold;
+}
+
 .squawk-post, .squawks-container, .squawk-item {
     background-color: white;
     color: (@hdrtextcolor*5/2);
@@ -119,7 +158,6 @@ textarea{
 .squawk-post, .squawks-container  {
     border-radius: @radius;
     -moz-border-radius: @radius;
-    margin-bottom: @pad-std;
 }
 .squawk-post-top {
     text-align: center;
@@ -127,7 +165,7 @@ textarea{
 }
 .squawk-post-bottom {
     text-align: right;
-    padding: 0 @pad-std @pad-std 0; 
+    padding-right: @pad-std; 
 }
 #post-button, #logoff-button {
     margin: @pad-small1 0 0 0;
@@ -306,6 +344,7 @@ hr {
 	.rounded-corners;
 	margin: @margincentre;
 	padding: @pad-std;
+	margin-top: 15px;
 	background-color: white;
 	div {
 		margin: 0 10px;   

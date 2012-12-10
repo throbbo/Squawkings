@@ -17,14 +17,16 @@
             </div>
         </div>
         
-        @using (Html.Form<SqauwkDispsInputModel>("Squawk","Home")) {
+        @using (Html.Form<SqauwkDispsInputModel>("Index", "Squawk"))
+		{
             <div class="squawk-post">
                 <div class="squawk-post-top">
-                    <textarea cols="110" rows="4" name="content">This is my first squawk!</textarea>
+                    <textarea cols="110" rows="4" name="content" placeholder="This is my first squawk!"></textarea>
                 </div>
-                <div class="squawk-post-bottom">
-                    @Html.Submit("Squawk")
-                </div>
+				<div class="squawk-post-bottom">
+					<span>@Html.ValidationSummary(true).AddClass("error")</span>
+					<span>@Html.Submit("Squawk").AddClass("btn primary")</span>
+				</div>
             </div>  
          }
         

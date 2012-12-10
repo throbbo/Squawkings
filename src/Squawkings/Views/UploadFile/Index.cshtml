@@ -4,26 +4,32 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
     
-<div class="container">
-    <div id="header">
-        <h1>Set your Avatar</h1>
+<div class="uploadfile-container">
+    <div id="uploadfile-header">
+        Profile Upload
+    </div>
+    <div id="uploadfile-header-text">
+        Use a gravatar or Upload an image
     </div>
 
  
-    <div class="uploadfile-container">
+    <div id="uploadfile-details">
         
         @using (Html.Form<UploadFileInputModel>("UploadFile", "UploadFile", modifier: x => x.Attr("enctype","multipart/form-data"))) {
-            <div>
-				<span>Use Gravatar</span>
-                <span>@Html.Input(x=>x.IsGravatar)</span>
-				<br/><br/>
-                <span>Upload File</span>
-                <span>@Html.Input(x=>x.File)</span>
+
+			<span class="uploadfile-label">Use Gravatar</span>
+            <span>@Html.Input(x=>x.IsGravatar)</span>
+			<br/><br/>
+            <span class="uploadfile-label">Image</span>
+            <span>@Html.Input(x=>x.File)</span>
 				
-				<br/><br/>
-                <div>@Html.Submit("Update Changes")</div>
-            </div>
-        }
+			<br/><br/>
+			
+			@Html.Submit("Save").AddClass("btn btn-primary")
+		
+			<a class="btn" href="@Url.Action("Cancel", new { userName = User.Identity.GetName() })">Cancel</a>
+		}
+
     </div>
 </div>
 

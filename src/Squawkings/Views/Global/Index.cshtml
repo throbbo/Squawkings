@@ -5,22 +5,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div>
-    <div class="container">
-        <div id="header">
-            <div id="global-header-text">
-                Global Squawks
-           </div>
-            <div class="global-header-text-small">
-                See everything happening right now
-            </div>
+<div class="container">
+    <div id="header">
+        <div id="global-header-text">
+            Global Squawks
         </div>
-
-        @using (Html.Form<GlobalInputModel>("")) {
-            <div class="squawks-container">
-                  @Html.Partial("_sqauwks", Model.SquawkDisps)
-            </div>
-        }
+        <div class="global-header-text-small">
+            See everything happening right now
+        </div>
     </div>
 
+    @using (Html.Form<GlobalInputModel>("")) {
+        <div class="squawks-container">
+                @Html.Partial("_sqauwks", Model.SquawkDisps)
+        </div>
+    }
 </div>
+
