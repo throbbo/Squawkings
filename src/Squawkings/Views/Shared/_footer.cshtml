@@ -1,13 +1,11 @@
 ﻿@model Squawkings.Models.FooterView
 <div id="footer-banner">
-    <div class="container">
-        <ul>
-            <li>
-                Total Squawks @Model.TotalSquawks
-            </li>
-            <li>
-                Total Users @Model.TotalUsers
-            </li>
-        </ul>
-    </div>
+	<div>
+		<span class="footer-label">Total Squawks</span>
+		<span class="footer-data">: @Model.TotalSquawks</span>
+	</div>
+	<div>
+		<span class="footer-label">Total Users</span> 
+		<span class="footer-data">: @Model.TotalUsers</span>
+	</div>
 </div>

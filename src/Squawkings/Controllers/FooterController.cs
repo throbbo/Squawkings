@@ -12,11 +12,6 @@ namespace Squawkings
     {
         private readonly IDatabase _db;
 
-        public FooterController()
-            : this(new Database("Squawkings"))
-        {
-            
-        }
         public FooterController(IDatabase db)
         {
             _db = db;

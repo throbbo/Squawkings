@@ -254,36 +254,20 @@ hr {
 
 /* Logon Page */
 #logon-container {
-   margin: @margincentre;
-   width: @logoncontwidth;
-}
-#logon-dialog {
-	margin-top: @logonconttopmargin; 
-	margin-left: auto;
-	margin-right: auto;
-	height: 190px;
-	background-color: white;
-	.rounded-corners;
-	border: (@stdborderwidth*2) @stdbordertype @bkgcolor;
-    padding: @pad-std;
-}
+    margin: @margincentre;
+    width: @logoncontwidth;
 
-#footer-banner {
-	width: 100%;
-	text-align: right;
-	display: inline-block; 
-	ul {
-		display: inline-block; 
-		font-weight: bold;
-		list-style-type: none;
-		margin: 0 10px;   
-		margin: 0 10px;   
-		li {
-			display: inline-block; 
-		}
+	#logon-dialog {
+		margin-top: @logonconttopmargin; 
+		margin-left: auto;
+		margin-right: auto;
+		height: 190px;
+		background-color: white;
+		.rounded-corners;
+		border: (@stdborderwidth*2) @stdbordertype @bkgcolor;
+		padding: @pad-std;
 	}
 }
-
 #logon-banner { 
     height: @bannerheight;
     background:  url("images/header.png") repeat-x;
@@ -315,6 +299,27 @@ hr {
 
 	}
 }
+
+#footer-banner {
+	width: @contwidth;
+	text-align: left;
+	.rounded-corners;
+	margin: @margincentre;
+	padding: @pad-std;
+	background-color: white;
+	div {
+		margin: 0 10px;   
+		margin: 0 10px;   
+		font-size: 14px;
+		span.footer-label {
+			font-weight: bold;
+		}
+		span.footer-data {
+			font-weight: normal;
+		}
+	}
+}
+
 .inputheightwidth(@marginptop: @pad-small1, @marginpbot: @pad-small1) {
     width: 100%;
 	height: 30px;

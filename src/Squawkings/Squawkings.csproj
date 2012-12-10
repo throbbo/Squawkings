@@ -216,6 +216,7 @@
     <Content Include="Views\Shared\_profile.cshtml" />
     <Content Include="Views\Shared\_footer.cshtml" />
     <Content Include="Views\UploadFile\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutLogon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -13,10 +13,6 @@ namespace Squawkings.Controllers
         private readonly IHomeDb _homeDb;
 		private readonly IGravatarsHelper _gravatarHelper;
 
-    	public HomeController()
-			: this(new HomeDb(), new GravatarsHelper())
-        {
-        }
 		public HomeController(IHomeDb homeDb, IGravatarsHelper gravatarHelper)
         {
         	_homeDb = homeDb;

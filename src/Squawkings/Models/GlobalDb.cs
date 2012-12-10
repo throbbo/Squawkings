@@ -17,11 +17,6 @@ namespace Squawkings.Models
     {
         private readonly IDatabase _db;
 
-        public GlobalDb()
-            : this(new Database("Squawkings"))
-        {
-            
-        }
         public GlobalDb(IDatabase db)
         {
             _db = db;
