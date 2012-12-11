@@ -39,14 +39,12 @@ namespace Squawkings.Controllers
 		[HttpPost]
         public ActionResult Index(SqauwkDispsInputModel im)
         {
-			if(string.IsNullOrEmpty(im.Content))
+			if(!ModelState.IsValid )
 			{
-				//ModelState.AddModelError("squawk","The field 'squawk' is required");
-				var vm = new SquawkDispsViewModel { SquawkDisps = _gravatarHelper.SetUrls(GetSquawkDisps()) };
-				return View("Index", vm);
+				return Index();
 			}
 
-            var userId = User.Identity.Id();
+			var userId = User.Identity.Id();
 
             _homeDb.AddSquawk(userId, im.Content);
 
@@ -63,6 +61,8 @@ namespace Squawkings.Controllers
         }
         public List<SquawkDisp> SquawkDisps { get; set; }
         public string OtherStuff { get; set; }
+		[DataType(DataType.Text)]
+		public string Content { get; set; }
     }
 
     public class SqauwkDispsInputModel
