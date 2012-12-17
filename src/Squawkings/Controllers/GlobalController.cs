@@ -26,18 +26,24 @@ namespace Squawkings.Controllers
 
     }
 
-    public class GlobalInputModel
+	public class GlobalViewModel
+	{
+		public GlobalViewModel()
+		{
+			HeaderView = new HeaderView {Header = "Global Squawks", Description = "See everything happening right now"};
+		}
+		public List<SquawkDisp> SquawkDisps { get; set; }
+		public string OtherStuff { get; set; }
+		public HeaderView HeaderView { get; set; }
+	}
+	
+	public class GlobalInputModel
     {
         public GlobalInputModel()
         {
             OtherStuff = "Hello World";
             SquawkDisps = new List<SquawkDisp>();
         }
-        public List<SquawkDisp> SquawkDisps { get; set; }
-        public string OtherStuff { get; set; }
-    }
-    public class GlobalViewModel
-    {
         public List<SquawkDisp> SquawkDisps { get; set; }
         public string OtherStuff { get; set; }
     }

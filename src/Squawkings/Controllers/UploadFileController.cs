@@ -21,7 +21,8 @@ namespace Squawkings.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            return View();
+        	var vm = new UploadFileViewModel();
+			return View(vm);
         }
 
 		[Authorize]
@@ -64,11 +65,22 @@ namespace Squawkings.Controllers
 
     public class UploadFileViewModel
     {
-
+    	public UploadFileViewModel()
+    	{
+    		HeaderView = new HeaderView {Header = "Profile Upload", Description = "Use a gravatar or Upload an image"};
+    	}
         public HttpPostedFileBase File { get; set; } 
-        public bool IsGravatar { get; set; } 
+        public bool IsGravatar { get; set; }
+    	public HeaderView HeaderView { get; set; }
     }
-    public class UploadFileInputModel
+
+	public class HeaderView
+	{
+		public string Header { get; set; }
+		public string Description { get; set; }
+	}
+
+	public class UploadFileInputModel
     {
         public HttpPostedFileBase File { get; set; } 
         public bool IsGravatar { get; set; } 

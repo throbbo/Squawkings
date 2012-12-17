@@ -52,6 +52,98 @@ form {
 	margin:0;
 }
 
+/* Menu */
+#menu-banner { 
+    height: @bannerheight;
+    background:  url("images/header.png") repeat-x;
+	position: fixed;
+	top: 0px;
+	width: 100%;
+	margin-bottom: 50px;
+	text-align: right;
+	z-index:100000; 
+
+	ul {
+		color:white;
+		font-size: 14px;
+		font-weight: bold;
+		font-family: arial;
+		list-style-type: none;
+		margin: 0 5px;   
+		li {
+			display: inline-block;  
+			padding: 10px 0;
+	        margin: 0 10px;
+			width: 50px;  
+			text-align: center;  
+			a {  
+				&:visited {color:#FFFFFF;}  /* visited link */
+				&:hover {color:#F7C600;}  /* mouse over link */
+				&:active {color:#FFF000;}  /* selected link */ 
+                height: @bannerheight;
+                text-align: center;  
+	        }  
+        }  
+
+	}
+}
+
+/* Logon Page */
+#error-dialog {
+	text-align: center;
+	width: @logoncontwidth;
+	margin: @logonconttopmargin auto 0 auto;
+}
+
+#logon-container {
+    margin: @margincentre;
+    width: @logoncontwidth;
+
+	#logon-dialog {
+		margin-left: auto;
+		margin-right: auto;
+		background-color: white;
+		.rounded-corners;
+		border: (@stdborderwidth*2) @stdbordertype @bkgcolor;
+		padding: @std;
+		text-align: center;  
+		label.checkbox {
+			text-align: left;  
+		}
+		input.logon-input-userid {
+		   .inputheightwidth(0,0);
+		}
+		input.logon-input-password {
+		   .inputheightwidth(10px,10px);
+		}
+		#logon-input-button {
+			width: 100%;
+			margin-top: 5px;
+		}
+
+	}
+}
+
+
+#header {
+	#header-text {
+		color:(@hdrtextcolor*2.5); 
+		font-size: 50px;
+		font-weight: 100;
+		text-shadow: 0 @stdborderwidth 0 rgba(255, 255, 255, 0.9);
+		padding: 25px 0 30px;
+	}
+	#header-text-small {
+		padding: 0 0 15px 5px;
+		font-size: @hdrfontsize;
+		font-weight: thinner;
+		color: @hdrtextcolor;
+		text-shadow: 1px 1px white;
+	}
+}
+
+
+
 .link-text {
 	font-size: @dfltfontsize;
 	text-align:right;
@@ -85,6 +177,10 @@ form {
 {
     font-weight: @bold;
     color: @cfldval;
+	ul {
+		padding: 0;
+		margin: 0;
+	}
 }
 .validation-summary-valid
 {
@@ -120,16 +216,7 @@ textarea{
 	.centered;
 	width: @contwidth;
 	position: relative;
-	#uploadfile-header {
-		padding: 25px 0;
-		font-size: 50px;
-		color: #565656;
-	}
-	#uploadfile-header-text {
-		padding: 15px 0;
-		font-size: 13px;
-		color: #565656;
-	}
+	padding-bottom: @std;
 	#uploadfile-details {
 		text-align: left;
 		.rounded-corners;
@@ -261,6 +348,7 @@ textarea{
 			}
 		}
 		#profile-follow-right {
+			opacity: 0.75; 
 			width: 90px;
 			display: inline-block;
 			text-align: right;
@@ -277,7 +365,7 @@ textarea{
 			hr {
 				height: 1px;
 				padding: 0;
-				margin: 0 0 10px 0;
+				margin: 5px 0 10px 0;
 			}
 		}
 		.btn-follower {
@@ -286,97 +374,7 @@ textarea{
 	}
 }
 
-#global-header-text {
-    color:(@hdrtextcolor*2.5); 
-    font-size: 50px;
-    font-weight: 100;
-    text-shadow: 0 @stdborderwidth 0 rgba(255, 255, 255, 0.9);
-    padding-top: (@std+10);
-}
-.global-header-text-small {
-    padding: 20px 0 0 5px;
-    font-size: @hdrfontsize;
-    color: @hdrtextcolor;
-}
 
-.global-header-text {
-    font-size: @hdrfontsize;
-    color: @hdrtextcolor;
-	font: @bold;
-}
-
-/* Logon Page */
-
-#error-dialog {
-	.centered;
-	text-align: center;
-	width: @logoncontwidth;
-	margin-top: @logonconttopmargin; 
-}
-
-#logon-container {
-    margin: @margincentre;
-    width: @logoncontwidth;
-
-	#logon-dialog {
-		margin-left: auto;
-		margin-right: auto;
-		height: 190px;
-		background-color: white;
-		.rounded-corners;
-		border: (@stdborderwidth*2) @stdbordertype @bkgcolor;
-		padding: @std;
-		text-align: center;  
-		label.checkbox {
-			text-align: left;  
-		}
-		input.logon-input-userid {
-		   .inputheightwidth(0,0);
-		}
-		input.logon-input-password {
-		   .inputheightwidth(10px,10px);
-		}
-		#logon-input-button {
-			width: 270px;
-			margin-top: @std;
-		}
-
-	}
-}
-#logon-banner { 
-    height: @bannerheight;
-    background:  url("images/header.png") repeat-x;
-	position: fixed;
-	top: 0px;
-	width: 100%;
-	margin-bottom: 50px;
-	text-align: right;
-	z-index:100000; 
-
-	ul {
-		color:white;
-		font-weight: bold;
-		font-family: arial;
-		list-style-type: none;
-		margin: 0 10px;   
-		li {
-			display: inline-block;  
-			padding: 10px 0;
-	        margin: 0 10px;
-			width: 80px;  
-			text-align: center;  
-			a {  
-				&:visited {color:#FFFFFF;}  /* visited link */
-				&:hover {color:#F7C600;}  /* mouse over link */
-				&:active {color:#FFFFFF;}  /* selected link */ 
-                text-decoration: none;  
-                height: @bannerheight;
-                text-align: center;  
-	        }  
-        }  
-
-	}
-}
 
 #footer-banner {
 	width: @contwidth;
@@ -386,16 +384,15 @@ textarea{
 	padding: @std;
 	margin-bottom: 15px;
 	background-color: white;
+	font-weight: bold;
 	div {
 		margin: 0 10px;   
 		margin: 0 10px;   
 		span.footer-label {
 			font-size: 14px;
-			font-weight: bold;
 		}
 		span.footer-data {
 			font-size: 12px;
-			font-weight: normal;
 		}
 	}
 }

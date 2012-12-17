@@ -35,7 +35,7 @@
                 {
                     using (Html.Form<ProfileInputModel>("UnFollow","Profile")) {
                         @Html.Input(x => x.UserName).Attr("type", "hidden")
-                        @Html.Submit("UnFollow").AddClass("btn btn-follower")
+                        @Html.Submit("Unfollow").AddClass("btn btn-follower")
                     }                    
                 }
                 else if(Model.FollowButton)

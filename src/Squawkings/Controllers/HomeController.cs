@@ -58,11 +58,13 @@ namespace Squawkings.Controllers
         {
             OtherStuff = "Hello World";
             SquawkDisps = new List<SquawkDisp>();
+			HeaderView = new HeaderView { Header = "Local Squawks", Description = "See everything I'm interested in" };
         }
         public List<SquawkDisp> SquawkDisps { get; set; }
         public string OtherStuff { get; set; }
 		[DataType(DataType.Text)]
 		public string Content { get; set; }
+		public HeaderView HeaderView { get; set; }
     }
 
     public class SqauwkDispsInputModel

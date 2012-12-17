@@ -6,14 +6,7 @@
 }
 
 <div class="container">
-    <div id="header">
-        <div id="global-header-text">
-            Global Squawks
-        </div>
-        <div class="global-header-text-small">
-            See everything happening right now
-        </div>
-    </div>
+	@Html.Partial("_header", Model.HeaderView)
 
     @using (Html.Form<GlobalInputModel>("")) {
         <div class="squawks-container">

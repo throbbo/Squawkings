@@ -5,23 +5,17 @@
 }
     
 <div class="uploadfile-container">
-    <div id="uploadfile-header">
-        Profile Upload
-    </div>
-    <div id="uploadfile-header-text">
-        Use a gravatar or Upload an image
-    </div>
+	@Html.Partial("_header", Model.HeaderView)
 
- 
-    <div id="uploadfile-details">
+	<div id="uploadfile-details">
         
-        @using (Html.Form<UploadFileInputModel>("UploadFile", "UploadFile", modifier: x => x.Attr("enctype","multipart/form-data"))) {
+		@using (Html.Form<UploadFileInputModel>("UploadFile", "UploadFile", modifier: x => x.Attr("enctype","multipart/form-data"))) {
 
 			<span class="uploadfile-label">Use Gravatar</span>
-            <span>@Html.Input(x=>x.IsGravatar)</span>
+			<span>@Html.Input(x=>x.IsGravatar)</span>
 			<br/><br/>
-            <span class="uploadfile-label">Image</span>
-            <span>@Html.Input(x=>x.File)</span>
+			<span class="uploadfile-label">Image</span>
+			<span>@Html.Input(x=>x.File)</span>
 				
 			<br/><br/>
 			
@@ -30,6 +24,6 @@
 			<a class="btn" href="@Url.Action("Cancel", new { userName = User.Identity.GetName() })">Cancel</a>
 		}
 
-    </div>
+	</div>
 </div>
 

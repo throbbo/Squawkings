@@ -8,14 +8,7 @@
 
 <div>
     <div class="container">
-        <div id="header">
-            <div id="global-header-text">
-                My Squawks
-           </div>
-            <div class="global-header-text-small">
-                See everything happening right now
-            </div>
-        </div>
+        @Html.Partial("_header", Model.HeaderView)
         
         @using (Html.Form<SqauwkDispsInputModel>("Index", "home"))
 		{
@@ -32,9 +25,7 @@
         
         <div class="squawks-container">
             @using (Html.Form<GlobalInputModel>("")) {
-                <div class="squawks-container">
-                        @Html.Partial("_sqauwks", Model.SquawkDisps)
-                </div>
+				@Html.Partial("_sqauwks", Model.SquawkDisps)
             }
         </div>
     </div>
