@@ -1,14 +1,14 @@
 ﻿@using Squawkings.Controllers
 @model Squawkings.Models.UserDisp
 
-<div id="profile-item">
+<div id="profile-top">
 
-    <div id="profile-inner">
+    <div id="profile-follow">
         <a href="@(Model.IsOwnProfile?Url.Action("Index", "UploadFile"):"#")">
             <img class="avatar"  src="@Url.Content(Model.DisplayUrl)" alt="View" />
         </a>
 
-        <div id="profile-inner-left">
+        <div id="profile-follow-left">
             <div id="profile-name">
                 @Model.UserName
             </div>
@@ -19,15 +19,15 @@
                 @Model.Bio
             </div>
         </div>
-        <div id="profile-inner-buttons">
-            <div>
-                <span>@Model.Followers</span>
-                <span>Followers</span>
-            </div>
-            <hr/>
-            <div>
-                <span>@Model.Following</span>
-                <span>Following</span> 
+        <div id="profile-follow-right">
+			<div id="profile-follow-disp">
+				<span id="profile-follow-num">@Model.Followers</span>
+				<span id="profile-follow-text">Followers</span>
+			</div>
+			<hr/>
+            <div id="profile-follow-disp">
+                <span id="profile-follow-num">@Model.Following</span>
+                <span id="profile-follow-text">Following</span> 
             </div>
             <hr/>
             <div>
@@ -35,14 +35,14 @@
                 {
                     using (Html.Form<ProfileInputModel>("UnFollow","Profile")) {
                         @Html.Input(x => x.UserName).Attr("type", "hidden")
-                        @Html.Submit("UnFollow").AddClass("btn-follower")
+                        @Html.Submit("UnFollow").AddClass("btn btn-follower")
                     }                    
                 }
                 else if(Model.FollowButton)
                 {
                     using (Html.Form<ProfileInputModel>("Follow","Profile")) {
                         @Html.Input(x => x.UserName).Attr("type", "hidden")
-                        @Html.Submit("Follow").AddClass("btn-follower")
+                        @Html.Submit("Follow").AddClass("btn btn-follower")
                     }   
                 }
             </div>

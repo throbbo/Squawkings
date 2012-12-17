@@ -5,6 +5,10 @@
     ViewBag.Title = "Logon.cshtml";
 }
 
+<div id="error-dialog" >
+    @Html.ValidationSummary(true)
+</div>
+
 <div id="logon-container">
     @using ( Html.Form<LogonInputModel>("index")) {
 
@@ -12,19 +16,14 @@
         @Html.Input(x=>x.ReturnUrl)
         <div id="logon-dialog">
             @Html.Input(x=>x.UserName).AddClass("logon-input-userid").Attr("title","Please enter a User Name").Attr("maxlength","50").Attr("placeholder","username")
-            @Html.Input(x=>x.PassWord).AddClass("logon-input-password").Attr("title","Please enter a Password").Attr("maxlength","50").Attr("placeholder","password")
+            @Html.Input(x => x.PassWord).AddClass("logon-input-password").Attr("title", "Please enter a Password").Attr("maxlength", "50").Attr("placeholder", "password")
             
             <label class="checkbox">
-                @Html.Input(x=>x.RememberMe) 
-                Remember Me
+                @Html.Input(x => x.RememberMe).Text("Remember Me") 
             </label>
-
-            <input id="logon-input-button" class="btn btn-primary " value="Log In" type="submit" />
+			@Html.Submit("Logon").AddClass("btn btn-primary").Attr("id", "logon-input-button")
         </div>
     }
 </div>
 
-<div id="error-dialog" >
-    @Html.ValidationSummary(true)
-</div>
 

@@ -3,28 +3,29 @@
     <div  class="container">
         <ul>
             @if (User.Identity.IsAuthenticated)
-            {
-                <li>
-                    @Html.Link("Profile", "index", Model.UserName)
-                </li>
-
-                <li>
-                    @Html.Link("Home", "index", "home")
-                </li>
-            }
-            
+			{
+				<li>
+					@Html.Link("Home", "index", "home")
+				</li>
+			}
+			
             <li>
-                @Html.Link("Global","index","global")
+                @Html.Link("Global", "index", "global")
             </li>
 
-            @if (User.Identity.IsAuthenticated)
-            {
-                <li>
+
+				
+			@if (User.Identity.IsAuthenticated)
+			{
+				<li>
+					@Html.Link("Profile", "index", Model.UserName)
+				</li>
+	           <li>
                     @Html.Link("Logoff", "logoff", "logon")
                 </li>
-            }
-            else
-            {
+			}
+		    else
+		    {
                 <li class="logon-active">
                     @Html.Link("Logon", "index", "logon")
                 </li>

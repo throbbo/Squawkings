@@ -10,11 +10,9 @@
     </div>
  
     <div class="squawks-container">
-        @using (Html.Form<GlobalInputModel>("")) {
-            <div class="squawks-container">
-                @Html.Partial("_sqauwks", Model.SquawkDisps)
-            </div>
-        }
+		@using (Html.Form<GlobalInputModel>("")) {
+				@Html.Partial("_sqauwks", Model.SquawkDisps)
+		}
     </div>
 </div>
 

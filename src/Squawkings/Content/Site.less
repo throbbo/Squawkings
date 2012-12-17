@@ -7,7 +7,7 @@
 @bkgcfldval: #ffeeee;
 @bkgcolor: #D4D4D4;
 @shadowcolor: #4D4D4D;
-@pad-std: 15px;
+@std: 15px;
 @pad-small1: 10px;
 @pad-small2: 5px;
 @textareaBorder: #CDCDCD;
@@ -40,14 +40,18 @@
   -o-border-radius: @radiusin;
   border-radius: @radiusin;
 }
+.rounded-bottom(@radiusin: 5px) {
+  -moz-border-radius-bottom: @radiusin;
+  -webkit-border-bottom-radius: @radiusin;
+  -ms-border-bottom-radius: @radiusin;
+  -o-border-bottom-radius: @radiusin;
+  border-radius: 0 0 @radiusin @radiusin;
+}
 
 form {
 	margin:0;
 }
 
-a:visited {color:#FFFFFF;}  /* visited link */
-a:hover {color:#F7C600;}  /* mouse over link */
-a:active {color:#FFFFFF;}  /* selected link */ 
 .link-text {
 	font-size: @dfltfontsize;
 	text-align:right;
@@ -130,7 +134,7 @@ textarea{
 		text-align: left;
 		.rounded-corners;
 		margin: @margincentre;
-		padding: @pad-std;
+		padding: @std;
 		background-color: white;
 		
 		.uploadfile-label  {
@@ -158,24 +162,32 @@ textarea{
 .squawk-post, .squawks-container  {
     border-radius: @radius;
     -moz-border-radius: @radius;
-	position: relative;
+	margin-bottom: 10px; 
+	.squawk-post-top {
+		text-align: center;
+		padding-top: @std; 
+		.squawk-post-textarea{
+			text-align: left;
+			resize:vertical;
+		}
+	}
+	.squawk-post-bottom {
+		text-align: left;
+		padding-left: @std; 
+		position: relative;
+		height: 40px;
+		.squawk-post-val {
+			left: @std; 
+			position: absolute;
+		}
+		.squawk-post-button {
+			position: absolute;
+			right: @std; 
+			text-align: right;
+		}
+	}
 }
-.squawk-post-top {
-    text-align: center;
-    padding-top: @pad-std; 
-}
-.squawk-post-bottom {
-    text-align: right;
-    padding-right: @pad-std; 
-}
-.squawk-post-textarea{
-	text-align: left;
-}
-.squawk-post-val {
-	text-align: left;
-	margin-left: 20px;
-	width: 600px;
-}
+
 #post-button, #logoff-button {
     margin: @pad-small1 0 0 0;
 }
@@ -193,18 +205,18 @@ textarea{
     width: 57px;
     height: 57px;
 	.rounded-corners;
-    left: @pad-std;
-    top: @pad-std;
+    left: @std;
+    top: @std;
     -webkit-box-shadow: 0px 0px @pad-small1 @shadowcolor; 
     -moz-box-shadow: 0px 0px @pad-small1 @shadowcolor;
     overflow: hidden;
     position: absolute;
-	left: @pad-std;
-    top: @pad-std;
+	left: @std;
+    top: @std;
 }
 
 .squawk-item-inner {
-    padding: @pad-std @pad-std @pad-std 82px;
+    padding: @std @std @std 82px;
 }
 .squawk-item-name {
     font-size: @sqauwkfontsize;
@@ -215,11 +227,11 @@ textarea{
     color: @sqauwktext;
 }
 .squawk-item-time {
-    padding: @pad-std 0 0 0;
+    padding: @std 0 0 0;
 	color: @timecolor;
 }
 
-#profile-item {
+#profile-top {
     background-color: white;
     color: (@hdrtextcolor*5/2);
     text-align: left;
@@ -227,57 +239,51 @@ textarea{
   	.centered;
 	position: relative;
 	margin-bottom: 10px;
+	.rounded-bottom;
 
-	#profile-display {
-		margin: @margincentre;
-		margin-top: 300px;
-	}
-	#profile-dialog {
-		margin-top: @logonconttopmargin; 
-		margin-left: auto;
-		margin-right: auto;
-		background-color: white;
-		.rounded-corners;
-		border: (@stdborderwidth*2) @stdbordertype @bkgcolor;
-		padding: @pad-std;
-	}
-	#profile-bio {
-		font-style: italic;
-		padding-top: 5px;
-	}
-	#profile-name {
-		font-size: 28px;
-	}
-	#profile-inner {
-		padding: @pad-std @pad-std @pad-std 82px;
+	#profile-follow {
+		padding: @std @std @std 82px;
 		position: relative;
+		.rounded-bottom;
 
-
-		#profile-inner-left {
-			width: 760px;
+		#profile-follow-left {
+			width: 770px;
 			display: inline-block;
+			vertical-align: top;
+			.rounded-bottom;
+			#profile-name {
+				margin: 4px 0 8px 0;
+				font-size: 28px;
+			}
+			#profile-bio {
+				font-style: italic;
+				margin-top: 10px;
+			}
 		}
-		#profile-inner-buttons {
+		#profile-follow-right {
+			width: 90px;
 			display: inline-block;
 			text-align: right;
 			font-size: 14px;
-			font-family: dotum;	
+			margin-top: 10px;
+			.rounded-bottom;
+			#profile-follow-disp {
+				#profile-follow-num {
+					font-weight: bold;
+				}
+				#profile-follow-text {
+				}
+			}
+			hr {
+				height: 1px;
+				padding: 0;
+				margin: 0 0 10px 0;
+			}
 		}
 		.btn-follower {
-			width: 90px;
-			margin-top: 3px;
-			font-family: dotum;
-			font-size: 14px;
-			font-weight: standard; 
+			width: 100%;
 		}
 	}
-}
-
-hr {
-	height: 1px;
-	padding:0;
-	margin: 0;
-	padding-bottom: 3px;
 }
 
 #global-header-text {
@@ -285,7 +291,7 @@ hr {
     font-size: 50px;
     font-weight: 100;
     text-shadow: 0 @stdborderwidth 0 rgba(255, 255, 255, 0.9);
-    padding-top: (@pad-std+10);
+    padding-top: (@std+10);
 }
 .global-header-text-small {
     padding: 20px 0 0 5px;
@@ -300,19 +306,41 @@ hr {
 }
 
 /* Logon Page */
+
+#error-dialog {
+	.centered;
+	text-align: center;
+	width: @logoncontwidth;
+	margin-top: @logonconttopmargin; 
+}
+
 #logon-container {
     margin: @margincentre;
     width: @logoncontwidth;
 
 	#logon-dialog {
-		margin-top: @logonconttopmargin; 
 		margin-left: auto;
 		margin-right: auto;
 		height: 190px;
 		background-color: white;
 		.rounded-corners;
 		border: (@stdborderwidth*2) @stdbordertype @bkgcolor;
-		padding: @pad-std;
+		padding: @std;
+		text-align: center;  
+		label.checkbox {
+			text-align: left;  
+		}
+		input.logon-input-userid {
+		   .inputheightwidth(0,0);
+		}
+		input.logon-input-password {
+		   .inputheightwidth(10px,10px);
+		}
+		#logon-input-button {
+			width: 270px;
+			margin-top: @std;
+		}
+
 	}
 }
 #logon-banner { 
@@ -336,12 +364,15 @@ hr {
 			padding: 10px 0;
 	        margin: 0 10px;
 			width: 80px;  
-			text-align: center;   
+			text-align: center;  
 			a {  
+				&:visited {color:#FFFFFF;}  /* visited link */
+				&:hover {color:#F7C600;}  /* mouse over link */
+				&:active {color:#FFFFFF;}  /* selected link */ 
                 text-decoration: none;  
                 height: @bannerheight;
                 text-align: center;  
-	           }  
+	        }  
         }  
 
 	}
@@ -352,43 +383,29 @@ hr {
 	text-align: left;
 	.rounded-corners;
 	margin: @margincentre;
-	padding: @pad-std;
-	margin-top: 15px;
+	padding: @std;
+	margin-bottom: 15px;
 	background-color: white;
 	div {
 		margin: 0 10px;   
 		margin: 0 10px;   
-		font-size: 14px;
 		span.footer-label {
+			font-size: 14px;
 			font-weight: bold;
 		}
 		span.footer-data {
+			font-size: 12px;
 			font-weight: normal;
 		}
 	}
 }
 
-.inputheightwidth(@marginptop: @pad-small1, @marginpbot: @pad-small1) {
+.inputheightwidth (@marginptop: @pad-small1, @marginpbot: @pad-small1) {
     width: 100%;
 	height: 30px;
     margin-top: @marginptop;
     margin-bottom: @marginpbot;
 }
-input.logon-input-userid {
-   .inputheightwidth(0,0);
-}
-input.logon-input-password {
-   .inputheightwidth(10px,10px);
-}
-#logon-input-button {
-    .inputheightwidth(10px,0);
-}
-#error-dialog {
-	.centered;
-	width: @logoncontwidth;
-}
-
-
 
 .input-validation-error.checkbox,
 .input-validation-error.radio,

@@ -21,7 +21,7 @@ namespace Squawkings.Controllers
             _logonDb = logonDb;
         }
 
-        private const string LogonErrorMsg = "Your Logon attempt was not successful!";
+        private const string LogonErrorMsg = "You cannot Logon";
 
         [HttpGet]
         public ActionResult Index(string returnUrl)
