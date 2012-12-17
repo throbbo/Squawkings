@@ -24,9 +24,9 @@ namespace Squawkings.Models
 
         public List<SquawkDisp> GetGlobalSquawks()
         {
-            var squawks = _db.Fetch<SquawkDisp>(@"select * from squawks s 
-	inner join Users u on u.UserId = s.UserId
- order by CreatedAt desc");
+        	var template = new GlobalSquawk();
+
+        	var squawks = _db.Fetch<SquawkDisp>(template.Template1);
 
             return squawks;
         }

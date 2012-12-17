@@ -126,8 +126,10 @@
     <Compile Include="GravatarHelper.cs" />
     <Compile Include="Models\Follower.cs" />
     <Compile Include="Models\FooterView.cs" />
+    <Compile Include="Models\GlobalSquawk.cs" />
     <Compile Include="Models\Squawk.cs" />
     <Compile Include="Models\SquawksDb.cs" />
+    <Compile Include="Models\TemplateBuilder.cs" />
     <Compile Include="Models\UserDisp.cs" />
     <Compile Include="Models\GlobalDb.cs" />
     <Compile Include="Models\HomeDb.cs" />

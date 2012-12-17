@@ -30,10 +30,10 @@ namespace Squawkings.Models
 
         public List<SquawkDisp> GetProfileSquawks(string userName)
         {
-            var squawks = _db.Fetch<SquawkDisp>(@"select top 10 * from squawks s 
-	inner join Users u on u.UserId = s.UserId
-where username = @0
-order by CreatedAt desc", userName);
+        	var template = new GlobalSquawk();
+        	template.Where("username = @0", userName);
+
+            var squawks = _db.Fetch<SquawkDisp>(template.Template1);
 
             return squawks;
         }
